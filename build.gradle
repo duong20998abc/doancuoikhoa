@@ -1,0 +1,51 @@
+group 'Doancuoikhoa'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+buildscript{
+    repositories{
+        mavenCentral()
+    }
+    dependencies{
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.7.RELEASE")
+    }
+}
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+//    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile fileTree(dir: 'lib',include:'*.jar')
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    compile("org.springframework.boot:spring-boot-devtools")
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    compile group: 'org.springframework',name:'spring-webmvc',version:'4.3.11.RELEASE'
+    compile group: 'net.sourceforge.nekohtml',name:'nekohtml',version: '1.9.21'
+    // use mysql connector-j
+    compile 'mysql:mysql-connector-java'
+    compile group: 'org.webjars', name: 'jquery', version: '2.1.4'
+    compile group: 'org.webjars', name: 'bootstrap', version: '3.3.7'
+    // https://mvnrepository.com/artifact/org.webjars/bootstrap
+//    compile group: 'org.webjars', name: 'bootstrap', version: '4.0.0-alpha'
+//    // https://mvnrepository.com/artifact/org.webjars/jquery
+//    compile group: 'org.webjars', name: 'jquery', version: '2.2.0'
+
+
+    compile group: 'org.modelmapper', name: 'modelmapper', version: '1.1.0'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-logging', version: '1.5.7.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-log4j2', version: '1.5.7.RELEASE'
+
+//    // https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf
+//    compile group: 'org.thymeleaf', name: 'thymeleaf', version: '3.0.9.RELEASE'
+//    // https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf-spring4
+//    compile group: 'org.thymeleaf', name: 'thymeleaf-spring4', version: '3.0.9.RELEASE'
+
+}

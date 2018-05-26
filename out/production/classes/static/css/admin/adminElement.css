@@ -1,0 +1,79 @@
+.nav-tabs li {
+    padding: 20px;
+    text-decoration: none;
+    padding-top: 10px;
+}
+
+.nav-tabs li a {
+    /*font-weight: bold;*/
+    color: black;
+}
+
+.table-title th {
+    text-align: center;
+}
+
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+.img-select-block {
+    position: relative;
+}
+
+#input-select-img-product {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+}
+
+.modal-content {
+    padding-left: 7px;
+}
+
+.form-group {
+    margin-top: 15px;
+}
+
+#modal-create-product {
+    font-family: Arial;
+}
+
+.table-list-product {
+    padding-bottom: 30px;
+}

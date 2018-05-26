@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>SportShop - Quản lý sản phẩm</title>
+
+    <link rel="stylesheet" th:href="@{/plugins/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/plugins/font-awesome/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/plugins/jvectormap/jquery-jvectormap-1.2.2.css}">
+    <link rel="stylesheet" th:href="@{/plugins/font-awesome/css/font-awesome.min.css}">
+    <!-- Theme style -->
+    <link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}">
+
+    <link rel="stylesheet" th:href="@{/css/admin/adminElement.css}">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.9.0/sweetalert2.min.css">
+</head>
+
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="index3.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="#" class="nav-link">Contact</a>
+                </li>
+            </ul>
+
+            <!-- SEARCH FORM -->
+            <form class="form-inline ml-3">
+                <div class="input-group input-group-sm">
+                    <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                    <div class="input-group-append">
+                        <button class="btn btn-navbar" type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+                <!-- Messages Dropdown Menu -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <i class="fa fa-comments-o"></i>
+                        <span class="badge badge-danger navbar-badge">3</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <a href="#" class="dropdown-item">
+                            <!-- Message Start -->
+                            <div class="media">
+                                <img th:src="@{../dist/img/user1-128x128.jpg}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                                <div class="media-body">
+                                    <h3 class="dropdown-item-title">
+                                        Captain Kunkka
+                                        <span class="float-right text-sm text-danger"><i class="fa fa-star"></i></span>
+                                    </h3>
+                                    <p class="text-sm">Call me whenever you can...</p>
+                                    <p class="text-sm text-muted"><i class="fa fa-clock-o mr-1"></i> 4 Hours Ago</p>
+                                </div>
+                            </div>
+                            <!-- Message End -->
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <!-- Message Start -->
+                            <div class="media">
+                                <img th:src="@{../dist/img/user2-160x160.jpg}" alt="User Avatar class="img-size-50 img-circle mr-3">
+                                <div class="media-body">
+                                    <h3 class="dropdown-item-title">
+                                        Gaben
+                                        <span class="float-right text-sm text-muted"><i class="fa fa-star"></i></span>
+                                    </h3>
+                                    <p class="text-sm">I got your message bro</p>
+                                    <p class="text-sm text-muted"><i class="fa fa-clock-o mr-1"></i> 4 Hours Ago</p>
+                                </div>
+                            </div>
+                            <!-- Message End -->
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <!-- Message Start -->
+                            <div class="media">
+                                <img th:src="@{../dist/img/user3-128x128.jpg}" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                                <div class="media-body">
+                                    <h3 class="dropdown-item-title">
+                                        Undying
+                                        <span class="float-right text-sm text-warning"><i class="fa fa-star"></i></span>
+                                    </h3>
+                                    <p class="text-sm">The subject goes here</p>
+                                    <p class="text-sm text-muted"><i class="fa fa-clock-o mr-1"></i> 4 Hours Ago</p>
+                                </div>
+                            </div>
+                            <!-- Message End -->
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <!-- Message Start -->
+                            <div class="media">
+                                <img th:src="@{../dist/img/avatar2.png}" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                                <div class="media-body">
+                                    <h3 class="dropdown-item-title">
+                                        Zeus
+                                        <span class="float-right text-sm text-warning"><i class="fa fa-star"></i></span>
+                                    </h3>
+                                    <p class="text-sm">The Olympus is cold!!!</p>
+                                    <p class="text-sm text-muted"><i class="fa fa-clock-o mr-1"></i> 10 Hours Ago</p>
+                                </div>
+                            </div>
+                            <!-- Message End -->
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+                    </div>
+                </li>
+                <!-- Notifications Dropdown Menu -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <i class="fa fa-bell-o"></i>
+                        <span class="badge badge-warning navbar-badge">15</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <span class="dropdown-header">15 Notifications</span>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fa fa-envelope mr-2"></i> 4 new messages
+                            <span class="float-right text-muted text-sm">3 mins</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fa fa-users mr-2"></i> 8 friend requests
+                            <span class="float-right text-muted text-sm">12 hours</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fa fa-file mr-2"></i> 3 new reports
+                            <span class="float-right text-muted text-sm">2 days</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><i
+                            class="fa fa-th-large"></i></a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.navbar -->
+
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <a href="index3.html" class="brand-link">
+                <img th:src="@{../dist/img/AdminLTELogo.png}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                     style="opacity: .8">
+                <span class="brand-text font-weight-light">Sportshop Admin</span>
+            </a>
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img th:src="@{../dist/img/avatar.png}" class="img-circle elevation-2" alt="User Image">
+                    </div>
+                    <div class="info">
+                        <a href="#" class="d-block">admin 1</a>
+                    </div>
+                </div>
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+                             with font-awesome or any other icon font library -->
+                        <li class="nav-item has-treeview menu-open">
+                            <a href="#" class="nav-link active">
+                                <i class="nav-icon fa fa-dashboard"></i>
+                                <p>
+                                    Main Navigation
+                                    <i class="right fa fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a th:href="@{'./'}" class="nav-link">
+                                        <i class="nav-icon"></i>
+                                        <p>Dashboard</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a th:href="@{'./manage_product'}" class="nav-link active">
+                                        <i class="nav-icon"></i>
+                                        <p>Quản lý sản phẩm</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a th:href="@{'./manage_member'}" class="nav-link">
+                                        <i class="nav-icon"></i>
+                                        <p>Quản lý thành viên</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a th:href="@{'./manage_order'}" class="nav-link">
+                                        <i class="nav-icon"></i>
+                                        <p>Đơn hàng</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a th:href="@{'./manage_news'}" class="nav-link">
+                                        <i class="nav-icon"></i>
+                                        <p>Quản lý tin tức</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a th:href="@{'./manage_feedback'}" class="nav-link">
+                                        <i class="nav-icon"></i>
+                                        <p>Quản lý feedback</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a th:href="@{'./manage_subscribers'}" class="nav-link">
+                                        <i class="nav-icon"></i>
+                                        <p>Subscriber, mailing</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        <div class="content-wrapper">
+            <section class="content">
+                <h2 style="padding: 15px">Admin- Products Page</h2>
+
+                <div class="label-success" style="padding: 10px !important; margin-left:10px;color: #fff">
+                    <span th:text="${vm.getMessageTotalProducts()}"></span>
+                </div>
+
+                <p style="margin-top: 10px; margin-left: 10px">
+                    <button class="btn btn-primary" id = "btn-new-product"
+                            data-toggle="modal" data-target="#modal-create-product">
+                        Thêm sản phẩm mới
+                    </button>
+                </p>
+
+                <div class="nav-tabs-custom">
+                    <div class="tab" style="margin-left: 10px; margin-bottom: 10px">
+                        <button class="tablinks" onclick="openCity(event, 'all')">All</button>
+                        <button class="tablinks" onclick="openCity(event, 'mcb')">Máy chạy bộ</button>
+                        <button class="tablinks" onclick="openCity(event, 'xdttd')">Xe đạp tập thể dục</button>
+                        <button class="tablinks" onclick="openCity(event, 'dcth')">Dụng cụ thể hình</button>
+                        <button class="tablinks" onclick="openCity(event, 'dcy')">Dụng cụ Yoga - thẩm mỹ</button>
+                        <button class="tablinks" onclick="openCity(event, 'dcbl')">Dụng cụ bơi lội</button>
+                        <button class="tablinks" onclick="openCity(event, 'gtt')">Giày thể thao</button>
+                    </div>
+                </div>
+
+                <div id="all" class="tabcontent table-list-product">
+                    <table class="table table-bordered table-striped tablex">
+                        <thead>
+                        <tr class="table-title">
+                            <th>Mã sản phẩm</th>
+                            <th>Ảnh sản phẩm</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Loại sản phẩm</th>
+                            <th>Mô tả sản phẩm</th>
+                            <th>Giá sản phẩm</th>
+                            <th>Chỉnh sửa</th>
+                            <th style="color: red">Xoá</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="product : ${vm.getListPagingProducts()}">
+                                <td>
+                                    <span th:text="${product.getId()}"></span>
+                                </td>
+                                <td>
+                                    <div class="td-image">
+                                        <a th:href="@{'product/detail/' + ${product.getId()}}">
+                                            <img th:src="${product.getImage()}" alt="" style="width: 100px; height: 100px"></a>
+                                    </div>
+                                </td>
+                                <td><a th:href="@{'product/detail/' + ${product.getId()}}"><span th:text="${product.getName()}"></span></a></td>
+                                <td><span th:text="${product.getCategory().getName()}"></span></td>
+                                <td><span th:text="${product.getShortDesc()}"></span></td>
+                                <td><span th:text="${product.getPrice()}"></span></td>
+                                <!--<td><span th:text="${product.getCreatedDate()}"></span></td>-->
+                                <td>
+                                    <button class="btn btn-default btn-edit-product" th:attr="data-product=${product.getId()}">
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-default btn-delete-product" th:attr="data-product=${product.getId()}">
+                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <ul class="pagination" th:if="${0 < vm.getTotalPagingItems()}">
+                        <th:block th:each="indexPage : ${#numbers.sequence(1, vm.getTotalPagingItems(), 1)}">
+                            <li class="active" th:if="${indexPage == vm.getCurrentPage()}">
+                                <a th:href="@{'/admin/manage_product?pageNumber=' + ${indexPage}}"><span th:text="${indexPage}"></span></a>
+                            </li>
+                            <li th:unless="${indexPage == vm.getCurrentPage()}">
+                                <a th:href="@{'/admin/manage_product?pageNumber=' + ${indexPage}}"><span th:text="${indexPage}"></span></a>
+                            </li>
+                        </th:block>
+                    </ul>
+                </div>
+
+                <div id="mcb" class="tabcontent table-list-product">
+                    <table class="table table-bordered table-striped tablex">
+                        <thead>
+                            <tr class="table-title">
+                                <th>Mã sản phẩm</th>
+                                <th>Ảnh sản phẩm</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Loại sản phẩm</th>
+                                <th>Mô tả sản phẩm</th>
+                                <th>Giá sản phẩm</th>
+                                <th>Chỉnh sửa</th>
+                                <th style="color: red">Xoá</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="product : ${vm.getListPagingProducts()}" th:if="${product.getCategory().getId() == 1}">
+                                <td>
+                                    <span th:text="${product.getId()}"></span>
+                                </td>
+                                <td>
+                                    <div class="td-image">
+                                        <a th:href="@{'product/detail/' + ${product.getId()}}">
+                                            <img th:src="${product.getImage()}" alt="" style="width: 100px; height: 100px"></a>
+                                    </div>
+                                </td>
+                                <td><a th:href="@{'product/detail/' + ${product.getId()}}"><span th:text="${product.getName()}"></span></a></td>
+                                <td><span th:text="${product.getCategory().getName()}"></span></td>
+                                <td><span th:text="${product.getShortDesc()}"></span></td>
+                                <td><span th:text="${product.getPrice()}"></span></td>
+                                <!--<td><span th:text="${product.getCreatedDate()}"></span></td>-->
+                                <td>
+                                    <button class="btn btn-default btn-edit-product" th:attr="data-product=${product.getId()}">
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-default btn-delete-product" th:attr="data-product=${product.getId()}">
+                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <ul class="pagination" th:if="${0 < vm.getTotalPagingItems()}">
+                        <th:block th:each="indexPage : ${#numbers.sequence(1, vm.getTotalPagingItems(), 1)}">
+                            <li class="active" th:if="${indexPage == vm.getCurrentPage()}">
+                                <a th:href="@{'/admin/manage_product?pageNumber=' + ${indexPage}}"><span th:text="${indexPage}"></span></a>
+                            </li>
+                            <li th:unless="${indexPage == vm.getCurrentPage()}">
+                                <a th:href="@{'/admin/manage_product?pageNumber=' + ${indexPage}}"><span th:text="${indexPage}"></span></a>
+                            </li>
+                        </th:block>
+                    </ul>
+                </div>
+
+                <div id="xdttd" class="tabcontent table-list-product">
+                    <table class="table table-bordered table-striped tablex">
+                        <thead>
+                            <tr class="table-title">
+                                <th>Mã sản phẩm</th>
+                                <th>Ảnh sản phẩm</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Loại sản phẩm</th>
+                                <th>Mô tả sản phẩm</th>
+                                <th>Giá sản phẩm</th>
+                                <th>Chỉnh sửa</th>
+                                <th style="color: red">Xoá</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="product : ${vm.getListPagingProducts()}" th:if="${product.getCategory().getId() == 2}">
+                                <td>
+                                    <span th:text="${product.getId()}"></span>
+                                </td>
+                                <td>
+                                    <div class="td-image">
+                                        <a th:href="@{'product/detail/' + ${product.getId()}}">
+                                            <img th:src="${product.getImage()}" alt="" style="width: 100px; height: 100px"></a>
+                                    </div>
+                                </td>
+                                <td><a th:href="@{'product/detail/' + ${product.getId()}}"><span th:text="${product.getName()}"></span></a></td>
+                                <td><span th:text="${product.getCategory().getName()}"></span></td>
+                                <td><span th:text="${product.getShortDesc()}"></span></td>
+                                <td><span th:text="${product.getPrice()}"></span></td>
+                                <!--<td><span th:text="${product.getCreatedDate()}"></span></td>-->
+                                <td>
+                                    <button class="btn btn-default btn-edit-product" th:attr="data-product=${product.getId()}">
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-default btn-delete-product" th:attr="data-product=${product.getId()}">
+                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <ul class="pagination" th:if="${0 < vm.getTotalPagingItems()}">
+                        <th:block th:each="indexPage : ${#numbers.sequence(1, vm.getTotalPagingItems(), 1)}">
+                            <li class="active" th:if="${indexPage == vm.getCurrentPage()}">
+                                <a th:href="@{'/admin/manage_product?pageNumber=' + ${indexPage}}"><span th:text="${indexPage}"></span></a>
+                            </li>
+                            <li th:unless="${indexPage == vm.getCurrentPage()}">
+                                <a th:href="@{'/admin/manage_product?pageNumber=' + ${indexPage}}"><span th:text="${indexPage}"></span></a>
+                            </li>
+                        </th:block>
+                    </ul>
+                </div>
+
+                <div id="dcth" class="tabcontent table-list-product">
+                    <table class="table table-bordered table-striped tablex">
+                        <thead>
+                        <tr class="table-title">
+                            <th>Mã sản phẩm</th>
+                            <th>Ảnh sản phẩm</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Loại sản phẩm</th>
+                            <th>Mô tả sản phẩm</th>
+                            <th>Giá sản phẩm</th>
+                            <th>Chỉnh sửa</th>
+                            <th style="color: red">Xoá</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="product : ${vm.getListPagingProducts()}" th:if="${product.getCategory().getId() == 3}">
+                                <td>
+                                    <span th:text="${product.getId()}"></span>
+                                </td>
+                                <td>
+                                    <div class="td-image">
+                                        <a th:href="@{'product/detail/' + ${product.getId()}}">
+                                            <img th:src="${product.getImage()}" alt="" style="width: 100px; height: 100px"></a>
+                                    </div>
+                                </td>
+                                <td><a th:href="@{'product/detail/' + ${product.getId()}}"><span th:text="${product.getName()}"></span></a></td>
+                                <td><span th:text="${product.getCategory().getName()}"></span></td>
+                                <td><span th:text="${product.getShortDesc()}"></span></td>
+                                <td><span th:text="${product.getPrice()}"></span></td>
+                                <!--<td><span th:text="${product.getCreatedDate()}"></span></td>-->
+                                <td>
+                                    <button class="btn btn-default btn-edit-product" th:attr="data-product=${product.getId()}">
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-default btn-delete-product" th:attr="data-product=${product.getId()}">
+                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <ul class="pagination" th:if="${0 < vm.getTotalPagingItems()}">
+                        <th:block th:each="indexPage : ${#numbers.sequence(1, vm.getTotalPagingItems(), 1)}">
+                            <li class="active" th:if="${indexPage == vm.getCurrentPage()}">
+                                <a th:href="@{'/admin/manage_product?pageNumber=' + ${indexPage}}"><span th:text="${indexPage}"></span></a>
+                            </li>
+                            <li th:unless="${indexPage == vm.getCurrentPage()}">
+                                <a th:href="@{'/admin/manage_product?pageNumber=' + ${indexPage}}"><span th:text="${indexPage}"></span></a>
+                            </li>
+                        </th:block>
+                    </ul>
+                </div>
+
+                <div id="dcy" class="tabcontent table-list-product">
+                    <table class="table table-bordered table-striped tablex">
+                        <thead>
+                        <tr class="table-title">
+                            <th>Mã sản phẩm</th>
+                            <th>Ảnh sản phẩm</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Loại sản phẩm</th>
+                            <th>Mô tả sản phẩm</th>
+                            <th>Giá sản phẩm</th>
+                            <th>Chỉnh sửa</th>
+                            <th style="color: red">Xoá</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="product : ${vm.getListPagingProducts()}" th:if="${product.getCategory().getId() == 4}">
+                                <td>
+                                    <span th:text="${product.getId()}"></span>
+                                </td>
+                                <td>
+                                    <div class="td-image">
+                                        <a th:href="@{'product/detail/' + ${product.getId()}}">
+                                            <img th:src="${product.getImage()}" alt="" style="width: 100px; height: 100px"></a>
+                                    </div>
+                                </td>
+                                <td><a th:href="@{'product/detail/' + ${product.getId()}}"><span th:text="${product.getName()}"></span></a></td>
+                                <td><span th:text="${product.getCategory().getName()}"></span></td>
+                                <td><span th:text="${product.getShortDesc()}"></span></td>
+                                <td><span th:text="${product.getPrice()}"></span></td>
+                                <!--<td><span th:text="${product.getCreatedDate()}"></span></td>-->
+                                <td>
+                                    <button class="btn btn-default btn-edit-product" th:attr="data-product=${product.getId()}">
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-default btn-delete-product" th:attr="data-product=${product.getId()}">
+                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <ul class="pagination" th:if="${0 < vm.getTotalPagingItems()}">
+                        <th:block th:each="indexPage : ${#numbers.sequence(1, vm.getTotalPagingItems(), 1)}">
+                            <li class="active" th:if="${indexPage == vm.getCurrentPage()}">
+                                <a th:href="@{'/admin/manage_product?pageNumber=' + ${indexPage}}"><span th:text="${indexPage}"></span></a>
+                            </li>
+                            <li th:unless="${indexPage == vm.getCurrentPage()}">
+                                <a th:href="@{'/admin/manage_product?pageNumber=' + ${indexPage}}"><span th:text="${indexPage}"></span></a>
+                            </li>
+                        </th:block>
+                    </ul>
+                </div>
+
+                <div id="dcbl" class="tabcontent table-list-product">
+                    <table class="table table-bordered table-striped tablex">
+                        <thead>
+                        <tr class="table-title">
+                            <th>Mã sản phẩm</th>
+                            <th>Ảnh sản phẩm</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Loại sản phẩm</th>
+                            <th>Mô tả sản phẩm</th>
+                            <th>Giá sản phẩm</th>
+                            <th>Chỉnh sửa</th>
+                            <th style="color: red">Xoá</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="product : ${vm.getListPagingProducts()}" th:if="${product.getCategory().getId() == 5}">
+                                <td>
+                                    <span th:text="${product.getId()}"></span>
+                                </td>
+                                <td>
+                                    <div class="td-image">
+                                        <a th:href="@{'product/detail/' + ${product.getId()}}">
+                                            <img th:src="${product.getImage()}" alt="" style="width: 100px; height: 100px"></a>
+                                    </div>
+                                </td>
+                                <td><a th:href="@{'product/detail/' + ${product.getId()}}"><span th:text="${product.getName()}"></span></a></td>
+                                <td><span th:text="${product.getCategory().getName()}"></span></td>
+                                <td><span th:text="${product.getShortDesc()}"></span></td>
+                                <td><span th:text="${product.getPrice()}"></span></td>
+                                <!--<td><span th:text="${product.getCreatedDate()}"></span></td>-->
+                                <td>
+                                    <button class="btn btn-default btn-edit-product" th:attr="data-product=${product.getId()}">
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-default btn-delete-product" th:attr="data-product=${product.getId()}">
+                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <ul class="pagination" th:if="${0 < vm.getTotalPagingItems()}">
+                        <th:block th:each="indexPage : ${#numbers.sequence(1, vm.getTotalPagingItems(), 1)}">
+                            <li class="active" th:if="${indexPage == vm.getCurrentPage()}">
+                                <a th:href="@{'/admin/manage_product?pageNumber=' + ${indexPage}}"><span th:text="${indexPage}"></span></a>
+                            </li>
+                            <li th:unless="${indexPage == vm.getCurrentPage()}">
+                                <a th:href="@{'/admin/manage_product?pageNumber=' + ${indexPage}}"><span th:text="${indexPage}"></span></a>
+                            </li>
+                        </th:block>
+                    </ul>
+                </div>
+
+                <div id="gtt" class="tabcontent table-list-product">
+                    <table class="table table-bordered table-striped tablex">
+                        <thead>
+                        <tr class="table-title">
+                            <th>Mã sản phẩm</th>
+                            <th>Ảnh sản phẩm</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Loại sản phẩm</th>
+                            <th>Mô tả sản phẩm</th>
+                            <th>Giá sản phẩm</th>
+                            <th>Chỉnh sửa</th>
+                            <th style="color: red">Xoá</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="product : ${vm.getListPagingProducts()}" th:if="${product.getCategory().getId() == 6}">
+                                <td>
+                                    <span th:text="${product.getId()}"></span>
+                                </td>
+                                <td>
+                                    <div class="td-image">
+                                        <a th:href="@{'product/detail/' + ${product.getId()}}">
+                                            <img th:src="${product.getImage()}" alt="" style="width: 100px; height: 100px"></a>
+                                    </div>
+                                </td>
+                                <td><a th:href="@{'product/detail/' + ${product.getId()}}"><span th:text="${product.getName()}"></span></a></td>
+                                <td><span th:text="${product.getCategory().getName()}"></span></td>
+                                <td><span th:text="${product.getShortDesc()}"></span></td>
+                                <td><span th:text="${product.getPrice()}"></span></td>
+                                <!--<td><span th:text="${product.getCreatedDate()}"></span></td>-->
+                                <td>
+                                    <button class="btn btn-default btn-edit-product" th:attr="data-product=${product.getId()}">
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-default btn-delete-product" th:attr="data-product=${product.getId()}">
+                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <ul class="pagination" th:if="${0 < vm.getTotalPagingItems()}">
+                        <th:block th:each="indexPage : ${#numbers.sequence(1, vm.getTotalPagingItems(), 1)}">
+                            <li class="active" th:if="${indexPage == vm.getCurrentPage()}">
+                                <a th:href="@{'/admin/manage_product?pageNumber=' + ${indexPage}}"><span th:text="${indexPage}"></span></a>
+                            </li>
+                            <li th:unless="${indexPage == vm.getCurrentPage()}">
+                                <a th:href="@{'/admin/manage_product?pageNumber=' + ${indexPage}}"><span th:text="${indexPage}"></span></a>
+                            </li>
+                        </th:block>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div id="modal-create-product" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Thông tin sản phẩm</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="img-select-block margin-bottom-15">
+                        <label>Ảnh</label>
+                        <br/>
+                        <img id="preview-product-img" th:src="@{/img/default-img.png}" />
+                        <input type="file" id="input-select-img-product"/>
+                    </div>
+
+                    <div class="form-group margin-bottom-15">
+                        <label>Tên sản phẩm: </label>
+                        <input type="text" class="form-control" id="input-product-name">
+                    </div>
+
+                    <div class="form-group margin-bottom-15">
+                        <label for="product-category">Danh mục: </label>
+                        <select id="product-category" class="form-control">
+                            <option th:each="category : ${vm.getListCategories()}"
+                                    th:value="${category.getId()}" th:text="${category.getName()}"></option>
+                        </select>
+                    </div>
+
+                    <div class="form-group margin-bottom-15">
+                        <label>Mô tả sản phẩm: </label>
+                        <textarea type="text" class="form-control" id="input-product-desc"></textarea>
+                    </div>
+
+                    <div class="form-group margin-bottom-15">
+                        <label>Giá sản phẩm: </label>
+                        <input type="text" class="form-control" id="input-product-price">
+                    </div>
+
+                    <div class="form-group margin-bottom-15">
+                        <label>Số lượng sản phẩm: </label>
+                        <input type="text" class="form-control" id="input-product-quantity">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Ngày tạo: </label>
+                        <div class='input-group date' id='datepicker-created-date-product'>
+                            <input type="text" class="form-control"/>
+                            <span class="input-group-addon">
+                                <span class="fa fa-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-success btn-save-product">Lưu sản phẩm</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- jQuery -->
+    <script type="text/javascript" th:src="@{/plugins/jquery/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/plugins/bootstrap/js/bootstrap.min.js}"></script><!-- AdminLTE App -->
+    <script type="text/javascript" th:src="@{/dist/js/adminlte.js}"></script>
+    <script type="text/javascript" th:src="@{/plugins/sparkline/jquery.sparkline.min.js}"></script>
+    <script type="text/javascript" th:src="@{/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js}"></script>
+    <script type="text/javascript" th:src="@{/plugins/jvectormap/jquery-jvectormap-world-mill-en.js}"></script>
+    <script type="text/javascript" th:src="@{/plugins/slimScroll/jquery.slimscroll.min.js}"></script>
+    <script type="text/javascript" th:src="@{/plugins/chart.js/Chart.js}"></script>
+    <!--<script type="text/javascript" th:src="@{/dist/js/dashboard.js}"></script>-->
+    <script type="text/javascript" th:src="@{/dist/js/demo.js}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/locale/vi.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.9.0/sweetalert2.all.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/adminElement.js}"></script>
+</body>
+</html>
