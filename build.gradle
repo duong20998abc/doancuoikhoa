@@ -33,19 +33,19 @@ dependencies {
     compile 'mysql:mysql-connector-java'
     compile group: 'org.webjars', name: 'jquery', version: '2.1.4'
     compile group: 'org.webjars', name: 'bootstrap', version: '3.3.7'
-    // https://mvnrepository.com/artifact/org.webjars/bootstrap
-//    compile group: 'org.webjars', name: 'bootstrap', version: '4.0.0-alpha'
-//    // https://mvnrepository.com/artifact/org.webjars/jquery
-//    compile group: 'org.webjars', name: 'jquery', version: '2.2.0'
-
 
     compile group: 'org.modelmapper', name: 'modelmapper', version: '1.1.0'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-logging', version: '1.5.7.RELEASE'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-log4j2', version: '1.5.7.RELEASE'
 
-//    // https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf
-//    compile group: 'org.thymeleaf', name: 'thymeleaf', version: '3.0.9.RELEASE'
-//    // https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf-spring4
-//    compile group: 'org.thymeleaf', name: 'thymeleaf-spring4', version: '3.0.9.RELEASE'
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security
+    //build tren SpringBoot hay su dung starter, Spring boot sinh ra lam nhung cai phuc tap -> su dung Spring don gian hon
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.0.2.RELEASE'
+
+//    // https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa
+//    compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '2.0.7.RELEASE'
+
+    // https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity4
+    compile group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity4', version: '2.1.2.RELEASE'
 
 }

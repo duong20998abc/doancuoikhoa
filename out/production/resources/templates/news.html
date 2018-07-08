@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header-css">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tin tức-Siêu thị thể thao Online</title>
+
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/news.css}"/>
+<body>
+<div th:replace="fragments/header :: header (vm=${vm})"></div>
+<div class="container">
+    <div class="main-content col-sm-9">
+        <div class="content-blog-page">
+            <div class="content-blog">
+                <div class="item-post-small" th:each="news : ${news}">
+                    <div class="row"  >
+                        <div class="col-sm-5">
+                            <div class="post-thumb">
+                                <a class="post-thumb-link" href=""><img th:src="${news.getImg()}" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="post-info">
+                                <ul class="post-date-comment">
+                                    <li>
+                                        <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                                        <span th:text="${news.getCreatedDate()}"></span>
+                                    </li>
+                                </ul>
+                                <h3 class="post-title"><a href="" th:text="${news.getTitle()}"></a></h3>
+                                <p class="desc" th:text="${news.getContent()}"></p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar col-sm-3">
+        <div class="sidebar-1">
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title" data-toggle="collapse" href="#collapse1">
+                            Chuyên mục
+                        </h3>
+                    </div>
+                    <div id="collapse1" class="panel-collapse collapse">
+                        <ul class="list-group">
+                            <li class="list-group-item">Blog thể thao</li>
+                            <li class="list-group-item">Hướng dẫn sử dụng</li>
+                            <li class="list-group-item">Tư vấn sản phẩm</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar-1">
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title" data-toggle="collapse" href="#collapse2">
+                            Bài viết mới nhất
+                        </h3>
+                    </div>
+                    <div id="collapse2" class="panel-collapse collapse">
+                        <ul class="list-group">
+                            <li class="list-group-item">Blog thể thao</li>
+                            <li class="list-group-item">Hướng dẫn sử dụng</li>
+                            <li class="list-group-item">Tư vấn sản phẩm</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer(vm=${vm})"></div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<script th:src="@{/plugins/Readmore.js-master/readmore.js}"></script>
+
+<script>
+    $('#info').readmore({
+        moreLink: '<a href="#">Usage, examples, and options</a>',
+        collapsedHeight: 384,
+        afterToggle: function(trigger, element, expanded) {
+            if(! expanded) { // The "Close" link was clicked
+                $('html, body').animate({scrollTop: element.offset().top}, {duration: 100});
+            }
+        }
+    });
+
+    $('p').readmore({speed: 500});
+</script>
+</body>
+</html>

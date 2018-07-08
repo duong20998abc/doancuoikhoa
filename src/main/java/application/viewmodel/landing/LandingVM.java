@@ -1,17 +1,21 @@
 package application.viewmodel.landing;
 
+import application.data.model.Category;
+import application.data.model.Product;
+import application.data.model.User;
+import application.model.UserDataModel;
 import application.viewmodel.common.LayoutHeaderVM;
 import application.viewmodel.common.LogoVM;
 import application.viewmodel.common.ProductVM;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class LandingVM extends LayoutHeaderVM {
-    private LogoVM logo;
     private ArrayList<MenuItemVM> listHrMenuItems;
     private ArrayList<MenuItemVM> listVtMenuItemsAside;
     private ArrayList<BannerVM> listBanners;
-    private ArrayList<ProductVM> listProducts;
+    private LogoVM logo;
 
     public LogoVM getLogo() {
         return logo;
@@ -45,11 +49,33 @@ public class LandingVM extends LayoutHeaderVM {
         this.listBanners = listBanners;
     }
 
-    public ArrayList<ProductVM> getListProducts() {
-        return listProducts;
+    private List<Category> categoryList;
+
+    public List<Category> getCategoryList() {
+        return categoryList;
     }
 
-    public void setListProducts(ArrayList<ProductVM> listProducts) {
-        this.listProducts = listProducts;
+    public void setCategoryList(List<Category> categoryList) {
+        this.categoryList = categoryList;
+    }
+
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<Product> productList;
+
+    public List<Product> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
     }
 }

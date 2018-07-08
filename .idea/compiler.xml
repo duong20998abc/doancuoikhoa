@@ -4,6 +4,10 @@
     <bytecodeTargetLevel>
       <module name="doancuoikhoa_main" target="1.8" />
       <module name="doancuoikhoa_test" target="1.8" />
+      <module name="GitHub-doancuoikhoa_main" target="1.8" />
+      <module name="GitHub-doancuoikhoa_test" target="1.8" />
+      <module name="htdocs-doancuoikhoa_main" target="1.8" />
+      <module name="htdocs-doancuoikhoa_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

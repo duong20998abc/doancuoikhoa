@@ -1,0 +1,402 @@
+<div class="nav-tabs-custom">
+    <div class="tab" style="margin-left: 10px; margin-bottom: 10px">
+        <button class="tablinks" onclick="openCity(event, 'all')">All</button>
+        <button class="tablinks" onclick="openCity(event, 'mcb')">Máy chạy bộ</button>
+        <button class="tablinks" onclick="openCity(event, 'xdttd')">Xe đạp tập thể dục</button>
+        <button class="tablinks" onclick="openCity(event, 'dcth')">Dụng cụ thể hình</button>
+        <button class="tablinks" onclick="openCity(event, 'dcy')">Dụng cụ Yoga - thẩm mỹ</button>
+        <button class="tablinks" onclick="openCity(event, 'dcbl')">Dụng cụ bơi lội</button>
+        <button class="tablinks" onclick="openCity(event, 'gtt')">Giày thể thao</button>
+    </div>
+</div>
+
+<div id="all" class="tabcontent table-list-product">
+    <table class="table table-bordered table-striped tablex">
+        <thead>
+        <tr class="table-title">
+            <th>Mã sản phẩm</th>
+            <th>Ảnh sản phẩm</th>
+            <th>Tên sản phẩm</th>
+            <th>Loại sản phẩm</th>
+            <th>Mô tả sản phẩm</th>
+            <th>Giá sản phẩm</th>
+            <th>Chỉnh sửa</th>
+            <th style="color: red">Xoá</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product : ${vm.getListPagingProducts()}">
+            <td>
+                <span th:text="${product.getId()}"></span>
+            </td>
+            <td>
+                <div class="td-image">
+                    <a th:href="@{'product/detail/' + ${product.getId()}}">
+                        <img th:src="${product.getImage()}" alt="" style="width: 100px; height: 100px"></a>
+                </div>
+            </td>
+            <td><a th:href="@{'product/detail/' + ${product.getId()}}"><span th:text="${product.getName()}"></span></a></td>
+            <td><span th:text="${product.getCategory().getName()}"></span></td>
+            <td><span th:text="${product.getShortDesc()}"></span></td>
+            <td><span th:text="${product.getPrice()}"></span></td>
+            <!--<td><span th:text="${product.getCreatedDate()}"></span></td>-->
+            <td>
+                <button class="btn btn-default btn-edit-product" th:attr="data-product=${product.getId()}">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </button>
+            </td>
+            <td>
+                <button class="btn btn-default btn-delete-product" th:attr="data-product=${product.getId()}">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <ul class="pagination" th:if="${0 < vm.getTotalPagingItems()}">
+        <th:block th:each="indexPage : ${#numbers.sequence(1, vm.getTotalPagingItems(), 1)}">
+            <li class="active" th:if="${indexPage == vm.getCurrentPage()}">
+                <a th:href="@{'/admin/manage_product?pageNumber=' + ${indexPage}}"><span th:text="${indexPage}"></span></a>
+            </li>
+            <li th:unless="${indexPage == vm.getCurrentPage()}">
+                <a th:href="@{'/admin/manage_product?pageNumber=' + ${indexPage}}"><span th:text="${indexPage}"></span></a>
+            </li>
+        </th:block>
+    </ul>
+</div>
+
+<div id="mcb" class="tabcontent table-list-product">
+    <table class="table table-bordered table-striped tablex">
+        <thead>
+        <tr class="table-title">
+            <th>Mã sản phẩm</th>
+            <th>Ảnh sản phẩm</th>
+            <th>Tên sản phẩm</th>
+            <th>Loại sản phẩm</th>
+            <th>Mô tả sản phẩm</th>
+            <th>Giá sản phẩm</th>
+            <th>Chỉnh sửa</th>
+            <th style="color: red">Xoá</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product : ${vm.getListPagingProducts()}" th:if="${product.getCategory().getId() == 1}">
+            <td>
+                <span th:text="${product.getId()}"></span>
+            </td>
+            <td>
+                <div class="td-image">
+                    <a th:href="@{'product/detail/' + ${product.getId()}}">
+                        <img th:src="${product.getImage()}" alt="" style="width: 100px; height: 100px"></a>
+                </div>
+            </td>
+            <td><a th:href="@{'product/detail/' + ${product.getId()}}"><span th:text="${product.getName()}"></span></a></td>
+            <td><span th:text="${product.getCategory().getName()}"></span></td>
+            <td><span th:text="${product.getShortDesc()}"></span></td>
+            <td><span th:text="${product.getPrice()}"></span></td>
+            <!--<td><span th:text="${product.getCreatedDate()}"></span></td>-->
+            <td>
+                <button class="btn btn-default btn-edit-product" th:attr="data-product=${product.getId()}">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </button>
+            </td>
+            <td>
+                <button class="btn btn-default btn-delete-product" th:attr="data-product=${product.getId()}">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <ul class="pagination" th:if="${0 < vm.getTotalPagingItems()}">
+        <th:block th:each="indexPage : ${#numbers.sequence(1, vm.getTotalPagingItems(), 1)}">
+            <li class="active" th:if="${indexPage == vm.getCurrentPage()}">
+                <a th:href="@{'/admin/manage_product?pageNumber=' + ${indexPage}}"><span th:text="${indexPage}"></span></a>
+            </li>
+            <li th:unless="${indexPage == vm.getCurrentPage()}">
+                <a th:href="@{'/admin/manage_product?pageNumber=' + ${indexPage}}"><span th:text="${indexPage}"></span></a>
+            </li>
+        </th:block>
+    </ul>
+</div>
+
+<div id="xdttd" class="tabcontent table-list-product">
+    <table class="table table-bordered table-striped tablex">
+        <thead>
+        <tr class="table-title">
+            <th>Mã sản phẩm</th>
+            <th>Ảnh sản phẩm</th>
+            <th>Tên sản phẩm</th>
+            <th>Loại sản phẩm</th>
+            <th>Mô tả sản phẩm</th>
+            <th>Giá sản phẩm</th>
+            <th>Chỉnh sửa</th>
+            <th style="color: red">Xoá</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product : ${vm.getListPagingProducts()}" th:if="${product.getCategory().getId() == 2}">
+            <td>
+                <span th:text="${product.getId()}"></span>
+            </td>
+            <td>
+                <div class="td-image">
+                    <a th:href="@{'product/detail/' + ${product.getId()}}">
+                        <img th:src="${product.getImage()}" alt="" style="width: 100px; height: 100px"></a>
+                </div>
+            </td>
+            <td><a th:href="@{'product/detail/' + ${product.getId()}}"><span th:text="${product.getName()}"></span></a></td>
+            <td><span th:text="${product.getCategory().getName()}"></span></td>
+            <td><span th:text="${product.getShortDesc()}"></span></td>
+            <td><span th:text="${product.getPrice()}"></span></td>
+            <!--<td><span th:text="${product.getCreatedDate()}"></span></td>-->
+            <td>
+                <button class="btn btn-default btn-edit-product" th:attr="data-product=${product.getId()}">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </button>
+            </td>
+            <td>
+                <button class="btn btn-default btn-delete-product" th:attr="data-product=${product.getId()}">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <ul class="pagination" th:if="${0 < vm.getTotalPagingItems()}">
+        <th:block th:each="indexPage : ${#numbers.sequence(1, vm.getTotalPagingItems(), 1)}">
+            <li class="active" th:if="${indexPage == vm.getCurrentPage()}">
+                <a th:href="@{'/admin/manage_product?pageNumber=' + ${indexPage}}"><span th:text="${indexPage}"></span></a>
+            </li>
+            <li th:unless="${indexPage == vm.getCurrentPage()}">
+                <a th:href="@{'/admin/manage_product?pageNumber=' + ${indexPage}}"><span th:text="${indexPage}"></span></a>
+            </li>
+        </th:block>
+    </ul>
+</div>
+
+<div id="dcth" class="tabcontent table-list-product">
+    <table class="table table-bordered table-striped tablex">
+        <thead>
+        <tr class="table-title">
+            <th>Mã sản phẩm</th>
+            <th>Ảnh sản phẩm</th>
+            <th>Tên sản phẩm</th>
+            <th>Loại sản phẩm</th>
+            <th>Mô tả sản phẩm</th>
+            <th>Giá sản phẩm</th>
+            <th>Chỉnh sửa</th>
+            <th style="color: red">Xoá</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product : ${vm.getListPagingProducts()}" th:if="${product.getCategory().getId() == 3}">
+            <td>
+                <span th:text="${product.getId()}"></span>
+            </td>
+            <td>
+                <div class="td-image">
+                    <a th:href="@{'product/detail/' + ${product.getId()}}">
+                        <img th:src="${product.getImage()}" alt="" style="width: 100px; height: 100px"></a>
+                </div>
+            </td>
+            <td><a th:href="@{'product/detail/' + ${product.getId()}}"><span th:text="${product.getName()}"></span></a></td>
+            <td><span th:text="${product.getCategory().getName()}"></span></td>
+            <td><span th:text="${product.getShortDesc()}"></span></td>
+            <td><span th:text="${product.getPrice()}"></span></td>
+            <!--<td><span th:text="${product.getCreatedDate()}"></span></td>-->
+            <td>
+                <button class="btn btn-default btn-edit-product" th:attr="data-product=${product.getId()}">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </button>
+            </td>
+            <td>
+                <button class="btn btn-default btn-delete-product" th:attr="data-product=${product.getId()}">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <ul class="pagination" th:if="${0 < vm.getTotalPagingItems()}">
+        <th:block th:each="indexPage : ${#numbers.sequence(1, vm.getTotalPagingItems(), 1)}">
+            <li class="active" th:if="${indexPage == vm.getCurrentPage()}">
+                <a th:href="@{'/admin/manage_product?pageNumber=' + ${indexPage}}"><span th:text="${indexPage}"></span></a>
+            </li>
+            <li th:unless="${indexPage == vm.getCurrentPage()}">
+                <a th:href="@{'/admin/manage_product?pageNumber=' + ${indexPage}}"><span th:text="${indexPage}"></span></a>
+            </li>
+        </th:block>
+    </ul>
+</div>
+
+<div id="dcy" class="tabcontent table-list-product">
+    <table class="table table-bordered table-striped tablex">
+        <thead>
+        <tr class="table-title">
+            <th>Mã sản phẩm</th>
+            <th>Ảnh sản phẩm</th>
+            <th>Tên sản phẩm</th>
+            <th>Loại sản phẩm</th>
+            <th>Mô tả sản phẩm</th>
+            <th>Giá sản phẩm</th>
+            <th>Chỉnh sửa</th>
+            <th style="color: red">Xoá</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product : ${vm.getListPagingProducts()}" th:if="${product.getCategory().getId() == 4}">
+            <td>
+                <span th:text="${product.getId()}"></span>
+            </td>
+            <td>
+                <div class="td-image">
+                    <a th:href="@{'product/detail/' + ${product.getId()}}">
+                        <img th:src="${product.getImage()}" alt="" style="width: 100px; height: 100px"></a>
+                </div>
+            </td>
+            <td><a th:href="@{'product/detail/' + ${product.getId()}}"><span th:text="${product.getName()}"></span></a></td>
+            <td><span th:text="${product.getCategory().getName()}"></span></td>
+            <td><span th:text="${product.getShortDesc()}"></span></td>
+            <td><span th:text="${product.getPrice()}"></span></td>
+            <!--<td><span th:text="${product.getCreatedDate()}"></span></td>-->
+            <td>
+                <button class="btn btn-default btn-edit-product" th:attr="data-product=${product.getId()}">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </button>
+            </td>
+            <td>
+                <button class="btn btn-default btn-delete-product" th:attr="data-product=${product.getId()}">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <ul class="pagination" th:if="${0 < vm.getTotalPagingItems()}">
+        <th:block th:each="indexPage : ${#numbers.sequence(1, vm.getTotalPagingItems(), 1)}">
+            <li class="active" th:if="${indexPage == vm.getCurrentPage()}">
+                <a th:href="@{'/admin/manage_product?pageNumber=' + ${indexPage}}"><span th:text="${indexPage}"></span></a>
+            </li>
+            <li th:unless="${indexPage == vm.getCurrentPage()}">
+                <a th:href="@{'/admin/manage_product?pageNumber=' + ${indexPage}}"><span th:text="${indexPage}"></span></a>
+            </li>
+        </th:block>
+    </ul>
+</div>
+
+<div id="dcbl" class="tabcontent table-list-product">
+    <table class="table table-bordered table-striped tablex">
+        <thead>
+        <tr class="table-title">
+            <th>Mã sản phẩm</th>
+            <th>Ảnh sản phẩm</th>
+            <th>Tên sản phẩm</th>
+            <th>Loại sản phẩm</th>
+            <th>Mô tả sản phẩm</th>
+            <th>Giá sản phẩm</th>
+            <th>Chỉnh sửa</th>
+            <th style="color: red">Xoá</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product : ${vm.getListPagingProducts()}" th:if="${product.getCategory().getId() == 5}">
+            <td>
+                <span th:text="${product.getId()}"></span>
+            </td>
+            <td>
+                <div class="td-image">
+                    <a th:href="@{'product/detail/' + ${product.getId()}}">
+                        <img th:src="${product.getImage()}" alt="" style="width: 100px; height: 100px"></a>
+                </div>
+            </td>
+            <td><a th:href="@{'product/detail/' + ${product.getId()}}"><span th:text="${product.getName()}"></span></a></td>
+            <td><span th:text="${product.getCategory().getName()}"></span></td>
+            <td><span th:text="${product.getShortDesc()}"></span></td>
+            <td><span th:text="${product.getPrice()}"></span></td>
+            <!--<td><span th:text="${product.getCreatedDate()}"></span></td>-->
+            <td>
+                <button class="btn btn-default btn-edit-product" th:attr="data-product=${product.getId()}">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </button>
+            </td>
+            <td>
+                <button class="btn btn-default btn-delete-product" th:attr="data-product=${product.getId()}">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <ul class="pagination" th:if="${0 < vm.getTotalPagingItems()}">
+        <th:block th:each="indexPage : ${#numbers.sequence(1, vm.getTotalPagingItems(), 1)}">
+            <li class="active" th:if="${indexPage == vm.getCurrentPage()}">
+                <a th:href="@{'/admin/manage_product?pageNumber=' + ${indexPage}}"><span th:text="${indexPage}"></span></a>
+            </li>
+            <li th:unless="${indexPage == vm.getCurrentPage()}">
+                <a th:href="@{'/admin/manage_product?pageNumber=' + ${indexPage}}"><span th:text="${indexPage}"></span></a>
+            </li>
+        </th:block>
+    </ul>
+</div>
+
+<div id="gtt" class="tabcontent table-list-product">
+    <table class="table table-bordered table-striped tablex">
+        <thead>
+        <tr class="table-title">
+            <th>Mã sản phẩm</th>
+            <th>Ảnh sản phẩm</th>
+            <th>Tên sản phẩm</th>
+            <th>Loại sản phẩm</th>
+            <th>Mô tả sản phẩm</th>
+            <th>Giá sản phẩm</th>
+            <th>Chỉnh sửa</th>
+            <th style="color: red">Xoá</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product : ${vm.getListPagingProducts()}" th:if="${product.getCategory().getId() == 6}">
+            <td>
+                <span th:text="${product.getId()}"></span>
+            </td>
+            <td>
+                <div class="td-image">
+                    <a th:href="@{'product/detail/' + ${product.getId()}}">
+                        <img th:src="${product.getImage()}" alt="" style="width: 100px; height: 100px"></a>
+                </div>
+            </td>
+            <td><a th:href="@{'product/detail/' + ${product.getId()}}"><span th:text="${product.getName()}"></span></a></td>
+            <td><span th:text="${product.getCategory().getName()}"></span></td>
+            <td><span th:text="${product.getShortDesc()}"></span></td>
+            <td><span th:text="${product.getPrice()}"></span></td>
+            <!--<td><span th:text="${product.getCreatedDate()}"></span></td>-->
+            <td>
+                <button class="btn btn-default btn-edit-product" th:attr="data-product=${product.getId()}">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </button>
+            </td>
+            <td>
+                <button class="btn btn-default btn-delete-product" th:attr="data-product=${product.getId()}">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <ul class="pagination" th:if="${0 < vm.getTotalPagingItems()}">
+        <th:block th:each="indexPage : ${#numbers.sequence(1, vm.getTotalPagingItems(), 1)}">
+            <li class="active" th:if="${indexPage == vm.getCurrentPage()}">
+                <a th:href="@{'/admin/manage_product?pageNumber=' + ${indexPage}}"><span th:text="${indexPage}"></span></a>
+            </li>
+            <li th:unless="${indexPage == vm.getCurrentPage()}">
+                <a th:href="@{'/admin/manage_product?pageNumber=' + ${indexPage}}"><span th:text="${indexPage}"></span></a>
+            </li>
+        </th:block>
+    </ul>
+</div>

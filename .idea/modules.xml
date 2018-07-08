@@ -2,9 +2,15 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/GitHub-doancuoikhoa.iml" filepath="$PROJECT_DIR$/.idea/modules/GitHub-doancuoikhoa.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/GitHub-doancuoikhoa_main.iml" filepath="$PROJECT_DIR$/.idea/modules/GitHub-doancuoikhoa_main.iml" group="doancuoikhoa" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/GitHub-doancuoikhoa_test.iml" filepath="$PROJECT_DIR$/.idea/modules/GitHub-doancuoikhoa_test.iml" group="doancuoikhoa" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/doancuoikhoa.iml" filepath="$PROJECT_DIR$/.idea/modules/doancuoikhoa.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/doancuoikhoa_main.iml" filepath="$PROJECT_DIR$/.idea/modules/doancuoikhoa_main.iml" group="doancuoikhoa" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/doancuoikhoa_test.iml" filepath="$PROJECT_DIR$/.idea/modules/doancuoikhoa_test.iml" group="doancuoikhoa" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/htdocs-doancuoikhoa.iml" filepath="$PROJECT_DIR$/.idea/modules/htdocs-doancuoikhoa.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/htdocs-doancuoikhoa_main.iml" filepath="$PROJECT_DIR$/.idea/modules/htdocs-doancuoikhoa_main.iml" group="doancuoikhoa" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/htdocs-doancuoikhoa_test.iml" filepath="$PROJECT_DIR$/.idea/modules/htdocs-doancuoikhoa_test.iml" group="doancuoikhoa" />
     </modules>
   </component>
 </project>

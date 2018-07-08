@@ -9,6 +9,7 @@ import application.model.*;
 import application.viewmodel.common.ProductVM;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -27,11 +28,11 @@ public class ProductApiController {
     private CategoryService categoryService;
 
     private String[] images = {
-            "https://images-na.ssl-images-amazon.com/images/I/519rVW4jTIL._SL500_SS135_.jpg",
-            "https://images-na.ssl-images-amazon.com/images/I/51JJ0e-i2yL._SL500_SS135_.jpg",
-            "https://images-na.ssl-images-amazon.com/images/I/517Q0wwZUXL._SL500_SS135_.jpg",
-            "https://images-na.ssl-images-amazon.com/images/I/41odx4vtkyL._SL500_SS135_.jpg",
-            "https://images-na.ssl-images-amazon.com/images/I/41KCisxFTwL._SL500_SS135_.jpg"
+            "https://sportonline.com.vn/wp-content/uploads/2017/10/Ghe-tap-vot-ta-xuki-300x300.jpg",
+            "https://sportonline.com.vn/wp-content/uploads/2017/10/ghe-tap-ta-da-nang-vifa-601521-300x300.jpg",
+            "https://sportonline.com.vn/wp-content/uploads/2017/10/ghe-tap-bung-da-nang-kk-021d-300x300.jpg",
+            "https://sportonline.com.vn/wp-content/uploads/2017/10/gian-ta-da-nang-dly-3003b-300x300.jpg",
+            "https://sportonline.com.vn/wp-content/uploads/2017/10/gian-tap-ta-da-nang-2016-300x300.jpg"
     };
 
     @GetMapping("/detail/{productId}")
@@ -94,12 +95,12 @@ public class ProductApiController {
         for(int i = 1; i <= 10; ++i) {
             Product p = new Product();
             p.setCreatedDate(new Date());
-            p.setName("Product " + i);
+            p.setName("Giày thể thao " + i);
             p.setShortDesc("Description for product " + i);
             p.setImage(images[random.nextInt(images.length)]);
-            p.setPrice(200000);
-            p.setQuantity(1);
-            p.setCategory(categoryService.getOne(1));
+            p.setPrice(300000);
+            p.setQuantity(5);
+            p.setCategory(categoryService.getOne(6));
             listProducts.add(p);
         }
 
@@ -115,8 +116,13 @@ public class ProductApiController {
 
         try {
             if(!"".equals(product.getName()) && !"".equals(product.getShortDesc()) && !"".equals(product.getImage())) {
-                ModelMapper modelMapper = new ModelMapper();
-                Product productEntity = modelMapper.map(product, Product.class);
+                Product productEntity = new Product();
+                productEntity.setShortDesc(product.getShortDesc());
+                productEntity.setCreatedDate(product.getCreatedDate());
+                productEntity.setImage(product.getImage());
+                productEntity.setName(product.getName());
+                productEntity.setPrice(product.getPrice());
+                productEntity.setQuantity(product.getQuantity());
                 productEntity.setCategory(categoryService.getOne(product.getCategoryId()));
                 productService.addNewProduct(productEntity);
                 result.setSuccess(true);
@@ -188,4 +194,26 @@ public class ProductApiController {
         return result;
     }
 
+    @GetMapping("/getall")
+    public BaseApiResult getAll() {
+        DataApiResult result = new DataApiResult();
+        ModelMapper modelMapper = new ModelMapper();
+
+        try {
+            ArrayList<Product> products = new ArrayList<>();
+            ArrayList<ProductDetailModel> productDetailModels = new ArrayList<>();
+            products = productService.getAll();
+            for(Product p : products) {
+                productDetailModels.add(modelMapper.map(p,ProductDetailModel.class));
+            }
+            result.setMessage("success");
+            result.setData(productDetailModels);
+            result.setSuccess(true);
+        }catch (Exception e){
+            result.setSuccess(false);
+            result.setData(null);
+            result.setMessage(e.getMessage());
+        }
+        return result;
+    }
 }

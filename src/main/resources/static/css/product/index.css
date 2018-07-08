@@ -1,0 +1,151 @@
+.breadcrumb {
+    margin-top: 30px;
+}
+
+.product_info {
+    padding-top: 10px;
+}
+
+.product_name {
+    border-bottom: 1px solid #efeee3;
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+.product_name {
+    color: red;
+}
+
+.star {
+    padding-top: 10px;
+}
+
+.saleoff {
+    padding: 10px;
+    background: #f2f2f2;
+}
+
+.saleoff-info  {
+    padding-top: 10px;
+}
+
+.call-content {
+    padding: 10px 0;
+    text-align: center;
+}
+
+.product_description {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #efeee3;
+}
+
+.product_price {
+    color: #1877a0;
+    text-align: center;
+    /*border-bottom: 1px solid #efeee3;*/
+    /*padding-bottom: 10px;*/
+}
+
+.checked {
+    color: #f2e315;
+}
+
+.call-to-order {
+    border-bottom: 1px solid #efeee3;
+}
+
+.quantity-check {
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+.quantity-check span {
+    font-size: 13pt;
+}
+.product-rating{
+    height: 14px;
+    background-repeat: repeat-x;
+    /*background-image: url(/wp-content/themes/kuteshop/assets/css/images/theme/rating-stars.png);*/
+    background-position: 0 0;
+}
+.fa{
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+}
+.product-extra-link a{
+    border: 1px solid #e5e5e5;
+    color: #ccc;
+    text-decoration: none;
+    background: #fff none repeat scroll 0 0;
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    width: 40px;
+    text-align: center;
+    vertical-align: top;
+    position: relative;
+    transition: all 0.5s ease-out 0s;
+    -webkit-transition: all 0.5s ease-out 0s;
+    border-radius: 4px;
+}
+
+.product-extra-link a:hover{
+    background: #337ab7;
+    color: white;
+}
+
+.footer_fourth-menu_connect {
+    padding-top: 30px;
+}
+
+.footer_fourth-menu_connect-logo{
+    margin-right: 10px;
+}
+
+/*.sidebar{*/
+    /*margin-top: 20px;*/
+/*}*/
+
+.sidebar-1{
+    margin-bottom: 20px;
+}
+
+.panel-title{
+    background: #7ebee6;
+    cursor: pointer;
+    padding: 17px 20px;
+    position: relative;
+    margin: 0;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #e5e5e5;
+}
+.panel-title a{
+    text-decoration: none;
+}
+.panel-heading{
+    padding: 0px;
+}
+.panel-title::after {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    content: "";
+    display: block;
+    font-family: fontawesome;
+    height: 24px;
+    line-height: 22px;
+    position: absolute;
+    right: 20px;
+    text-align: center;
+    top: 13px;
+    width: 24px;
+    transition: all 0.5s ease-out 0s;
+    -webkit-transition: all 0.5s ease-out 0s;
+}
+

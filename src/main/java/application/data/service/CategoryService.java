@@ -36,4 +36,8 @@ public class CategoryService {
     public Category findOne(int categoryId) {
         return categoryRepository.findOne(categoryId);
     }
+
+    public Category findbyId(int id) {
+        return categoryRepository.findCategoryById(id);
+    }
 }

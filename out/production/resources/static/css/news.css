@@ -1,0 +1,111 @@
+.main-content{
+    margin-top: 20px;
+    margin-bottom: 30px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.content-blog{
+    padding: 30px 30px 0px 30px;
+    box-sizing: border-box;
+}
+.item-post-small{
+    padding-bottom: 30px;
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 30px;
+}
+.post-thumb{
+    position: relative;
+    display: block;
+}
+.post-thumb a{
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.post-thumb-link img{
+    width: 250px;
+    height: 250px;
+}
+.post-thumb-link{
+    display: block;
+    overflow: hidden;
+    position: relative;
+    box-sizing: border-box;
+}
+.post-thumb-link img:hover{
+    background-color:   rgba(0,0,0,.3) none repeat scroll 0 0;
+}
+.post-date-comment{
+    list-style: outside none none;
+    padding: 0;
+}
+.post-info ul{
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+.post-date-comment i.fa {
+    margin-right: 8px;
+}
+.post-date-comment span {
+    color: #ccc;
+}
+.post-title{
+    font-size: 18px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+.post-title a{
+    text-decoration: none;
+    color: #104fea;
+    -webkit-transition: all 0.5s ease-out 0s;
+}
+.post-title a:hover{
+    color: #337ab7;
+}
+.desc{
+    color: #555;
+    line-height: 24px;
+    margin-bottom: 16px;
+}
+.sidebar{
+    margin-top: 20px;
+}
+.panel-title{
+    background: #7ebee6;
+    cursor: pointer;
+    padding: 17px 20px;
+    position: relative;
+    margin: 0;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #e5e5e5;
+}
+.panel-title a{
+    text-decoration: none;
+}
+.panel-heading{
+    padding: 0px;
+}
+.panel-title::after {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    content: "";
+    display: block;
+    font-family: fontawesome;
+    height: 24px;
+    line-height: 22px;
+    position: absolute;
+    right: 20px;
+    text-align: center;
+    top: 13px;
+    width: 24px;
+    transition: all 0.5s ease-out 0s;
+    -webkit-transition: all 0.5s ease-out 0s;
+}
+
+
+.sidebar-1{
+    margin-bottom: 20px;
+}

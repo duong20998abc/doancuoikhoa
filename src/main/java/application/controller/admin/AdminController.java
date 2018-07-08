@@ -12,6 +12,7 @@ import application.viewmodel.admin.AdminVM;
 import application.viewmodel.common.ProductVM;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +23,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@PreAuthorize("hasAnyRole('ADMIN')")
 @RequestMapping(path="/admin")
+
 public class AdminController extends BaseController{
 
     @Autowired
@@ -37,45 +40,10 @@ public class AdminController extends BaseController{
 
         AdminVM vm = new AdminVM();
         long totalProducts = productService.getTotalProducts();
+        ArrayList<Product> allProducts = productService.getAll();
+        vm.setListAllProducts(allProducts);
 
         vm.setMessageTotalProducts("Số sản phẩm hiện có: " + totalProducts);
-
-        if(pageNumber == null) {
-            pageNumber = 1;
-        }
-
-        try {
-            PaginableItemList<Product> paginableItemList = productService.getListProducts(Constant.DEFAULT_PAGE_SIZE, pageNumber - 1);
-            List<Product> listProducts = paginableItemList.getListData();
-            ArrayList<ProductVM> listProductVMs = new ArrayList<>();
-            ModelMapper modelMapper = new ModelMapper();
-            for(Product product : listProducts) {
-                ProductVM productVM = modelMapper.map(product, ProductVM.class);
-                listProductVMs.add(productVM);
-            }
-            vm.setListPagingProducts(listProductVMs);
-
-            int totalPages = 0;
-            if(paginableItemList.getTotalProducts() % pageSize == 0) {
-                totalPages = (int)(paginableItemList.getTotalProducts() / pageSize);
-            } else {
-                totalPages = (int)(paginableItemList.getTotalProducts() / pageSize) + 1;
-            }
-
-            vm.setTotalPagingItems(totalPages);
-            vm.setCurrentPage(pageNumber);
-
-            //TODO: get list categories
-            List<Category> listCategories = categoryService.getListAllCategories();
-            ArrayList<CategoryDataModel> dataModelArrayList = new ArrayList<>();
-            for (Category cat :
-                    listCategories) {
-                dataModelArrayList.add(modelMapper.map(cat, CategoryDataModel.class));
-            }
-            vm.setListCategories(dataModelArrayList);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
 
         model.addAttribute("vm",vm);
         return "admin/manage_product";
@@ -91,10 +59,6 @@ public class AdminController extends BaseController{
         return "admin/manage_order";
     }
 
-    @GetMapping(path = "/manage_news")
-    public String newsAdmin() {
-        return "admin/manage_news";
-    }
 
     @GetMapping(path = "/manage_feedback")
     public String feedbackAdmin() {

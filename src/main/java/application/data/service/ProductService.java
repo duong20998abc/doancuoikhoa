@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -67,4 +68,13 @@ public class ProductService {
         }
         return false;
     }
+
+    public ArrayList<Product> getAll() {
+        return productRepository.getAllProducts();
+    }
+
+    public ArrayList<Product> getListProductsByCategory(int categoryid) {
+        return productRepository.getProductsByCategory(categoryid);
+    }
+
 }

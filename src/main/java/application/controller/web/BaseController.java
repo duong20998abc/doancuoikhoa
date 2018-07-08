@@ -11,13 +11,13 @@ public abstract class BaseController {
         LogoVM logo = new LogoVM("SportOnline",
                 "/img/sportshop.png","SportOnline","SportOnline");
         ArrayList<MenuItemVM> listHrMenuItems = new ArrayList<>();
-        listHrMenuItems.add(new MenuItemVM("Trang chủ" ,"/"));
-        listHrMenuItems.add(new MenuItemVM("Máy chạy bộ" ,"/"));
-        listHrMenuItems.add(new MenuItemVM("Xe đạp tập thể dục" ,"/"));
-        listHrMenuItems.add(new MenuItemVM("Dụng cụ thể hình" ,"/"));
-        listHrMenuItems.add(new MenuItemVM("Dụng cụ Yoga-Thẩm mỹ" ,"/"));
-        listHrMenuItems.add(new MenuItemVM("Dụng cụ bơi lội" ,"/"));
-        listHrMenuItems.add(new MenuItemVM("Giày thể thao" ,"/"));
+        listHrMenuItems.add(new MenuItemVM("TRANG CHỦ " ,"/"));
+        listHrMenuItems.add(new MenuItemVM("MÁY CHẠY BỘ" ,"/"));
+        listHrMenuItems.add(new MenuItemVM("XE ĐẠP TẬP THỂ DỤC" ,"/"));
+        listHrMenuItems.add(new MenuItemVM("DỤNG CỤ THỂ HÌNH" ,"/"));
+        listHrMenuItems.add(new MenuItemVM("DỤNG CỤ YOGA - THẨM MỸ" ,"/"));
+        listHrMenuItems.add(new MenuItemVM("DỤNG CỤ BƠI LỘI" ,"/"));
+        listHrMenuItems.add(new MenuItemVM("GIÀY THỂ THAO" ,"/"));
 
         listHrMenuItems.get(1).getChildren().add(new MenuItemVM("Máy chạy bộ điện","/"));
 

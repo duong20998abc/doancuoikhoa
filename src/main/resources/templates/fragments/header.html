@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:fragment="header-css">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Siêu thị thể thao Online</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/headerandfooter.css}"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.19.3/sweetalert2.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/plugins/WOW-master/css/libs/animate.css}">
+</head>
+<body>
+<div th:fragment="header (vm)">
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-left">
+                    <li><a href="#">Giới thiệu</a></li>
+                    <li><a th:href="@{/news}">Tin tức</a></li>
+                    <li><a href="#">Liên hệ</a></li>
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a th:href="@{/register-user}">Đăng Kí</a></li>
+                    <li><a th:href="@{/login}">Đăng Nhập</a></li>
+                    <li sec:authorize="isAuthenticated()" class="dropdown" th:each="user : ${vm.getUser()}">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i><img class="user-logo" th:src="${user.getImage()}" alt="" style="width: 20px; height: 20px"></i>
+                            <span class="user-name" sec:authentication="name"></span> <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a id="role" href="#"><span sec:authentication="authorities"></span></a></li>
+                            <li id="role-menu"></li>
+                            <li class="divider"></li>
+                            <li>
+                                <a th:href="@{'/user/' + ${user.getId()}}">Thông tin thành viên</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a th:href="@{/logout}">Log out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="header-big">
+        <div class="container" >
+            <div class="header-top">
+                <div class="column-container col-sm-3">
+                    <div class="logo">
+                        <a th:href="@{/}">
+                            <img class="img-responsive" th:src="${vm.getLogo().getLogoUrl()}"
+                                 th:alt="${vm.getLogo().getLogoAltText()}"></a>
+                    </div>
+                </div>
+
+                <div class="column-container col-sm-5">
+                    <div id="custom-search-input">
+                        <div class="input-group col-md-12">
+                            <input type="text" class="form-control input-lg" placeholder="Nhập tên sản phẩm" />
+                            <span class="input-group-btn">
+                            <button class="btn btn-info btn-lg" type="button">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </button>
+                        </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="column-container col-sm-1">
+                    <a th:href="@{~/cart}" class="btn btn-info btn-lg">
+                        <span class="glyphicon glyphicon-shopping-cart"></span>
+                    </a>
+
+                </div>
+                <div class="column-container col-sm-3">
+                    <div class="hotline">
+                        <a href="">
+                            <span class="hotline-span"><strong>Đường dây nóng:0946235025</strong></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="topnav" id="myTopnav">
+        <div class="container">
+            <div class="dropdown1 ">
+                <button class="dropbtn">
+                    <a th:href="@{/}"><i class="fa fa-home"></i>TRANG CHỦ</a>
+                </button>
+            </div>
+            <div class="dropdown1 ">
+                <button class="dropbtn">
+                    <a th:href="@{'/list-products/1'}">
+                    MÁY CHẠY BỘ
+                    </a>
+                </button>
+                <div class="dropdown-content">
+                    <a href="#">Máy chạy bộ điện</a>
+                </div>
+            </div>
+            <div class="dropdown1">
+                <button class="dropbtn">
+                    <a th:href="@{'~/list-products/2'}">XE ĐẠP TẬP THỂ DỤC</a>
+                </button>
+                <div class="dropdown-content">
+                    <a href="#">Xe đạp tập thể lực</a>
+                    <a href="#">Xe đạp tập toàn thân</a>
+                    <a href="#">Xe đạp tập phục hồi chức năng</a>
+                </div>
+            </div>
+            <div class="dropdown1">
+                <button class="dropbtn"><a th:href="@{'~/list-products/3'}">DỤNG CỤ THỂ HÌNH</a>
+
+                </button>
+                <div class="dropdown-content">
+                    <a href="#">Giàn tập tạ</a>
+                    <a href="#">Máy tập phòng Gym</a>
+                    <a href="#">Máy tập cơ bụng</a>
+                    <a href="#">Xà đơn - Xà kép</a>
+                    <a href="#">Phụ kiện tập thể hình</a>
+                </div>
+            </div>
+            <div class="dropdown1">
+                <button class="dropbtn"><a th:href="@{'~/list-products/4'}">DỤNG CỤ YOGA - THẨM MỸ</a>
+
+                </button>
+                <div class="dropdown-content">
+                    <a href="#">Thảm tập Yoga</a>
+                    <a href="#">Bóng tập Yoga</a>
+                    <a href="#">Dụng cụ tập thẩm mỹ</a>
+                </div>
+            </div>
+            <div class="dropdown1">
+                <button class="dropbtn"><a th:href="@{'~/list-products/5'}">DỤNG CỤ BƠI LỘI</a>
+
+                </button>
+                <div class="dropdown-content">
+                    <a href="#">Kính bơi</a>
+                    <a href="#">Mũ bơi</a>
+                    <a href="#">Phao bơi</a>
+                    <a href="#">Quần bơi</a>
+                </div>
+            </div>
+            <div class="dropdown1">
+                <button class="dropbtn"><a th:href="@{'~/list-products/6'}">GIÀY THỂ THAO</a>
+
+                </button>
+                <div class="dropdown-content">
+                    <a href="#">Giày chạy bộ</a>
+                    <a href="#">Giày cầu lông</a>
+                    <a href="#">Giày tennis</a>
+                </div>
+            </div>
+
+
+            <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.9.0/sweetalert2.all.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-hover-dropdown/2.2.1/bootstrap-hover-dropdown.min.js"></script>
+<script type="text/javascript" th:src="@{/plugins/WOW-master/dist/wow.js}"></script>
+
+</body>
+</html>
+
