@@ -1,5 +1,8 @@
 package application.model;
 
+import application.extension.CustomDateSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.util.Date;
 
 public class UserDetailModel {
@@ -11,6 +14,7 @@ public class UserDetailModel {
     private String gender;
     private String address;
     private String phone;
+
     private Date createdDate;
     private Date updatedDate;
     private String OldPassword;

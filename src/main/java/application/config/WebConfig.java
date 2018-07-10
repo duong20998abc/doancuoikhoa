@@ -1,6 +1,7 @@
 package application.config;
 
 import application.data.service.CategoryService;
+import application.data.service.OrderService;
 import application.data.service.ProductService;
 import org.apache.coyote.http11.AbstractHttp11Protocol;
 import org.apache.logging.log4j.LogManager;
@@ -31,6 +32,11 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Value("${spring.thymeleaf.templates_root:}")
     private String templatesRoot;
+
+    @Bean
+    public OrderService getOrderService(){
+        return new OrderService();
+    }
 
     @Bean
     public ITemplateResolver defaultTemplateResolver() {

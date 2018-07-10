@@ -29,7 +29,7 @@ $(document).ready(function () {
         console.log(dataUser.id);
     });
 
-    $('#datepicker-created-date-product').datetimepicker();
+    // $('#datepicker-created-date-user').datetimepicker();
 
     $("#button-edit-info").on("click", function () {
         var userInfo = $(this).data("user"); //tao 1 bien lay data cua user
@@ -42,6 +42,7 @@ $(document).ready(function () {
                 dataUser.id = res.data.data.id;
                 dataUser.image = res.data.data.image;
                 $("#input-name").val(res.data.data.realname);
+                $('#input-username').val(res.data.data.username);
                 $("#input-gender").val(res.data.data.gender);
                 $('#preview-avatar').attr('src', dataUser.image);
                 $('#input-address').val(res.data.data.address);
@@ -73,15 +74,16 @@ $(document).ready(function () {
             return;
         }
         console.log(dataUser.id);
-        var createdDate = null;
-        if($("#datepicker-created-date-product").data("DateTimePicker").date()) {
-            createdDate = $("#datepicker-created-date-product").data("DateTimePicker").date().format("YYYY-MM-DD HH:mm:ss")
-        }
-        dataUser.name = $('#input-name').val();
+        // var updatedDate = null;
+        // if($("#datepicker-created-date-user").data("DateTimePicker").date()) {
+        //     updatedDate = $("#datepicker-created-date-user").data("DateTimePicker").date().format("YYYY-MM-DD HH:mm:ss")
+        // }
+        dataUser.username= $('#input-username').val();
+        dataUser.realname = $('#input-name').val();
         dataUser.gender = $('#input-gender').val();
         dataUser.phone = $('#input-phone').val();
         dataUser.address = $('#input-address').val();
-        // dataProduct.createdDate = createdDate;
+        // dataUser.updatedDate= updatedDate;
         dataUser.email = $('#input-email').val();
 
         NProgress.start();
@@ -96,7 +98,7 @@ $(document).ready(function () {
                     res.data.message,
                     'success'
                 ).then(function() {
-                    window.location.replace('http://localhost:8080/logout');
+                    window.location.reload();
                 });
             } else {
                 swal(

@@ -108,7 +108,20 @@ public class UserApiController {
                 if(existedUser == null) {
                     result.setSuccess(false);
                     result.setMessage("This user is not existed");
-                }else if(passwordEncoder.matches(user.getOldPassword(),existedUser.getPassword())) {
+//                }else if(passwordEncoder.matches(user.getOldPassword(),existedUser.getPassword())) {
+//                    existedUser.setUsername(user.getUsername());
+//                    existedUser.setEmail(user.getEmail());
+//                    existedUser.setRealname(user.getRealname());
+//                    existedUser.setAddress(user.getAddress());
+//                    existedUser.setGender(user.getGender());
+//                    existedUser.setImage(user.getImage());
+//                    existedUser.setUpdatedDate(user.getUpdatedDate());
+//                    existedUser.setPassword(passwordEncoder.encode(user.getPassword()));
+//                    userService.updateUser(existedUser);
+//                    result.setSuccess(true);
+//                    result.setMessage("Success!!!!!");
+//                    result.setData(existedUser);
+                }else {
                     existedUser.setUsername(user.getUsername());
                     existedUser.setEmail(user.getEmail());
                     existedUser.setRealname(user.getRealname());
@@ -116,21 +129,11 @@ public class UserApiController {
                     existedUser.setGender(user.getGender());
                     existedUser.setImage(user.getImage());
                     existedUser.setUpdatedDate(user.getUpdatedDate());
-                    existedUser.setPassword(passwordEncoder.encode(user.getPassword()));
+                    existedUser.setPhone(user.getPhone());
                     userService.updateUser(existedUser);
                     result.setSuccess(true);
                     result.setMessage("Success!!!!!");
-                }else if("".equals(user.getOldPassword()) && "".equals(user.getPassword())){
-                    existedUser.setUsername(user.getUsername());
-                    existedUser.setEmail(user.getEmail());
-                    existedUser.setRealname(user.getRealname());
-                    existedUser.setAddress(user.getAddress());
-                    existedUser.setGender(user.getGender());
-                    existedUser.setImage(user.getImage());
-                    existedUser.setUpdatedDate(user.getUpdatedDate());
-                    userService.updateUser(existedUser);
-                    result.setSuccess(true);
-                    result.setMessage("Success!!!!!");
+                    result.setData(existedUser);
                 }
             }else {
                 result.setSuccess(false);

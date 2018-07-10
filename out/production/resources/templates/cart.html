@@ -19,82 +19,84 @@
     <div class="wrapper" style="margin-bottom:20px; clear: both">
         <section class="content">
             <div class="container">
-                <h3 class="your-cart-intro">Giỏ hàng của bạn</h3>
-                <div class="cart-detailed-info">
-                    <div class="row">
-                        <div class="col-lg-8 col-md-8 col-xs-12 table-product-list">
-                            <table class="table table-striped table-hover product-checkout">
-                                <thead>
-                                <tr>
+                <form method="post" action="">
+                    <h3 class="your-cart-intro">Giỏ hàng của bạn</h3>
+                    <div class="cart-detailed-info">
+                        <div class="row">
+                            <div class="col-lg-8 col-md-8 col-xs-12 table-product-list">
+                                <table class="table table-striped table-hover product-checkout">
+                                    <thead>
+                                    <tr>
                                         <th colspan="6"><h5 style="text-align: left; font-weight: bold">Giỏ hàng của bạn hiện có
                                             <span th:text="${vm.getCart().getListCartProducts().size()}"></span> sản phẩm</h5></th>
-                                </tr>
-                                <tr>
-                                    <th><h5>Hình ảnh mô tả</h5></th>
-                                    <th><h5>Tên sản phẩm</h5></th>
-                                    <th><h5>Đơn giá</h5></th>
-                                    <th><h5>Số lượng</h5></th>
-                                    <th><h5>Ghi chú</h5></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr th:each="orderProduct : ${vm.getCart().getListCartProducts()}">
-                                    <td>
-                                        <a th:href="@{'~/product/detail' + ${orderProduct.getProduct().getId()}}">
-                                            <img class="img-responsive"
-                                                 th:src="${orderProduct.getProduct().getImage()}" alt="dcth" style="width: 120px; height: 150px">
-                                        </a>
-                                    </td>
-                                    <td style="padding-top: 20px" th:text="${orderProduct.getProduct().getName()}"></td>
-                                    <td style="padding-top: 20px">
-                                        <span th:text="${orderProduct.getProduct().getPrice()}"></span>
-                                        <span>VND</span>
-                                    </td>
-                                    <td style="padding-top: 15px">
-                                        <input type="number" th:value="${orderProduct.getAmount()}" class="form-control"
-                                        th:attr="data-product=${orderProduct.getId()}">
-                                    </td>
-                                    <td style="padding-top: 20px" th:text="${orderProduct.getProduct().getShortDesc()}"></td>
-                                    <td style="padding-top: 15px"><button class="btn btn-danger btn-delete" th:attr="data-product=${orderProduct.getId()}">x</button></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <div class="buymore-button">
-                                <a th:href="@{/}" class="btn btn-primary">Tiếp tục mua hàng</a>
+                                    </tr>
+                                    <tr>
+                                        <th><h5>Hình ảnh mô tả</h5></th>
+                                        <th><h5>Tên sản phẩm</h5></th>
+                                        <th><h5>Đơn giá</h5></th>
+                                        <th><h5>Số lượng</h5></th>
+                                        <th><h5>Ghi chú</h5></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="orderProduct : ${vm.getCart().getListCartProducts()}">
+                                        <td>
+                                            <a th:href="@{'~/product/detail' + ${orderProduct.getProduct().getId()}}">
+                                                <img class="img-responsive"
+                                                     th:src="${orderProduct.getProduct().getImage()}" alt="dcth" style="width: 120px; height: 150px">
+                                            </a>
+                                        </td>
+                                        <td style="padding-top: 20px" th:text="${orderProduct.getProduct().getName()}"></td>
+                                        <td style="padding-top: 20px">
+                                            <span th:text="${orderProduct.getProduct().getPrice()}"></span>
+                                            <span>VND</span>
+                                        </td>
+                                        <td style="padding-top: 15px">
+                                            <input type="number" th:value="${orderProduct.getAmount()}" class="form-control"
+                                                   th:attr="data-product=${orderProduct.getId()}">
+                                        </td>
+                                        <td style="padding-top: 20px" th:text="${orderProduct.getProduct().getShortDesc()}"></td>
+                                        <td style="padding-top: 15px"><button class="btn btn-danger btn-delete" th:attr="data-product=${orderProduct.getId()}">x</button></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <div class="buymore-button">
+                                    <a th:href="@{/}" class="btn btn-primary">Tiếp tục mua hàng</a>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="col-lg-4 col-md-4 col-xs-12">
-                            <table class="table table-striped table-hover list-products">
-                                <thead>
-                                <tr>
-                                    <th colspan="2"><h4 style="font-weight: bold">Thông tin đơn hàng</h4></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td style="font-weight: bold">Giá trị thực: </td>
-                                    <td>
-                                        <span th:text="${vm.getCart().getPrice()}"></span>
-                                        <span>VND</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="font-weight: bold">Tổng số tiền thanh toán: </td>
-                                    <td>
-                                        <span th:text="${vm.getCart().getPrice()}"></span>
-                                        <span>VND</span>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <div class="checkout-button">
-                                <a class="btn btn-success checkout">
-                                    Tiến hành thanh toán</a>
+                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                <table class="table table-striped table-hover list-products">
+                                    <thead>
+                                    <tr>
+                                        <th colspan="2"><h4 style="font-weight: bold">Thông tin đơn hàng</h4></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td style="font-weight: bold">Giá trị thực: </td>
+                                        <td>
+                                            <span th:text="${vm.getCart().getPrice()}"></span>
+                                            <span>VND</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-weight: bold">Tổng số tiền thanh toán: </td>
+                                        <td>
+                                            <span th:text="${vm.getCart().getPrice()}"></span>
+                                            <span>VND</span>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <div class="checkout-button">
+                                    <a class="btn btn-success checkout">
+                                        Tiến hành thanh toán</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </section>
     </div>

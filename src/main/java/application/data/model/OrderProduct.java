@@ -8,7 +8,7 @@ public class OrderProduct {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "orderproduct_id")
     @Id
-    private int orderproductId;
+    private int id;
 
     @Column(name = "amount")
     private int amount;
@@ -30,12 +30,12 @@ public class OrderProduct {
     @JoinColumn(name = "productid")
     private Product product;
 
-    public int getOrderproductId() {
-        return orderproductId;
+    public int getId() {
+        return id;
     }
 
-    public void setOrderproductId(int orderproductId) {
-        this.orderproductId = orderproductId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getAmount() {

@@ -10,6 +10,7 @@ import application.data.service.ProductService;
 import application.model.CategoryDataModel;
 import application.viewmodel.admin.AdminVM;
 import application.viewmodel.common.ProductVM;
+import application.viewmodel.landing.LandingVM;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -35,16 +36,17 @@ public class AdminController extends BaseController{
     private CategoryService categoryService;
 
     @GetMapping(path = "/manage_product")
-    public String admin(Model model, @RequestParam(value = "pageNumber", required = false)Integer pageNumber) {
-        int pageSize = Constant.DEFAULT_PAGE_SIZE;
+    public String admin(Model model) {
 
         AdminVM vm = new AdminVM();
+        LandingVM landing = new LandingVM();
         long totalProducts = productService.getTotalProducts();
         ArrayList<Product> allProducts = productService.getAll();
         vm.setListAllProducts(allProducts);
-
+        vm.setListCategories(categoryService.getListAllCategories());
         vm.setMessageTotalProducts("Số sản phẩm hiện có: " + totalProducts);
 
+        model.addAttribute("landing",landing);
         model.addAttribute("vm",vm);
         return "admin/manage_product";
     }

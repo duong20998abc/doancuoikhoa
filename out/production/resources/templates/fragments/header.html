@@ -7,13 +7,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Siêu thị thể thao Online</title>
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.theme.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/headerandfooter.css}"/>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.19.3/sweetalert2.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.2/awesomplete.css">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
     <link rel="stylesheet" th:href="@{/plugins/WOW-master/css/libs/animate.css}">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/headerandfooter.css}"/>
 </head>
 <body>
 <div th:fragment="header (vm)">
@@ -30,31 +33,33 @@
                 <ul class="nav navbar-nav navbar-left">
                     <li><a href="#">Giới thiệu</a></li>
                     <li><a th:href="@{/news}">Tin tức</a></li>
-                    <li><a href="#">Liên hệ</a></li>
+                    <li><a th:href="@{/contact}">Liên hệ</a></li>
 
                 </ul>
+
                 <ul class="nav navbar-nav navbar-right">
                     <li><a th:href="@{/register-user}">Đăng Kí</a></li>
-                    <li><a th:href="@{/login}">Đăng Nhập</a></li>
-                    <li sec:authorize="isAuthenticated()" class="dropdown" th:each="user : ${vm.getUser()}">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i><img class="user-logo" th:src="${user.getImage()}" alt="" style="width: 20px; height: 20px"></i>
-                            <span class="user-name" sec:authentication="name"></span> <span class="caret"></span>
+                    <li><a sec:authorize="!isAuthenticated()" th:href="@{/login}">Đăng Nhập</a></li>
+                    <li sec:authorize="isAuthenticated()" class="dropdown">
+                        <a href="#" class="dropdown-toggle logout" data-toggle="dropdown">
+                            <span>  Xin chào </span>
+                            <i><img class="user-logo" th:src="@{../img/default-face.png}" style="width: 20px; height: 20px" alt=""></i>
+                            <span class="user-name" sec:authentication="name"></span>
+                            <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a id="role" href="#"><span sec:authentication="authorities"></span></a></li>
                             <li id="role-menu"></li>
+                            <!--<li><a th:href="@{/rules}">Chinh sách giao hàng</a></li>-->
                             <li class="divider"></li>
-                            <li>
-                                <a th:href="@{'/user/' + ${user.getId()}}">Thông tin thành viên</a>
-                            </li>
-                            <li class="divider"></li>
-                            <li><a th:href="@{/logout}">Log out</a></li>
+                            <li><a th:href="@{/logout}">Thoát</a></li>
                         </ul>
                     </li>
                 </ul>
             </div>
+
         </div>
+
     </nav>
 
     <div class="header-big">
@@ -69,16 +74,37 @@
                 </div>
 
                 <div class="column-container col-sm-5">
-                    <div id="custom-search-input">
-                        <div class="input-group col-md-12">
-                            <input type="text" class="form-control input-lg" placeholder="Nhập tên sản phẩm" />
-                            <span class="input-group-btn">
-                            <button class="btn btn-info btn-lg" type="button">
-                                <i class="glyphicon glyphicon-search"></i>
-                            </button>
-                        </span>
+                    <form action="#" th:action="@{/product/search}" autocomplete="off" th:object="${product}" method="get" role="search">
+                        <!--<div >-->
+                        <!--<div class="input-group col-md-12">-->
+                        <!--<input type="text" class="form-control input-lg" placeholder="Nhập tên sản phẩm"/>-->
+                        <!--<span class="input-group-btn">-->
+                        <!--<button class="btn btn-info btn-lg" type="button">-->
+                        <!--<i class="glyphicon glyphicon-search"></i>-->
+                        <!--</button>-->
+                        <!--</span>-->
+
+                        <!--</div>-->
+
+                        <!--</div>-->
+                        <div class="form-group">
+                            <section id="ajax-example">
+                                <div class="awesomplete">
+                                    <input placeholder="Tìm kiếm" name="name" class="form-control input-control" type="text" autocomplete="off" aria-owns="awesomplete_list_6" role="combobox">
+                                    <ul role="listbox" id="awesomplete_list_6" hidden="">
+                                        <li aria-selected="false" id="awesomplete_list_6_item_0"><mark>Ca</mark>nada</li>
+                                        <li aria-selected="false" id="awesomplete_list_6_item_1"><mark>Ca</mark>meroon</li>
+                                        <li aria-selected="false" id="awesomplete_list_6_item_2">Madagas<mark>ca</mark>r</li>
+                                        <li aria-selected="false" id="awesomplete_list_6_item_3">New <mark>Ca</mark>ledonia</li>
+                                        <li aria-selected="false" id="awesomplete_list_6_item_4">Central Afri<mark>ca</mark>n Republic</li>
+                                    </ul>
+                                    <span class="visually-hidden" role="status" aria-live="assertive" aria-atomic="true" hidden="">No results found</span>
+                                </div>
+                                <button type="submit" value="Submit" class="btn btn-default search-button glyphicon glyphicon-search"></button>
+                            </section>
                         </div>
-                    </div>
+
+                    </form>
                 </div>
                 <div class="column-container col-sm-1">
                     <a th:href="@{~/cart}" class="btn btn-info btn-lg">
@@ -107,7 +133,7 @@
             <div class="dropdown1 ">
                 <button class="dropbtn">
                     <a th:href="@{'/list-products/1'}">
-                    MÁY CHẠY BỘ
+                        MÁY CHẠY BỘ
                     </a>
                 </button>
                 <div class="dropdown-content">
@@ -174,13 +200,10 @@
     </div>
 </div>
 
-
 <script type="text/javascript" th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
 <script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.9.0/sweetalert2.all.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-hover-dropdown/2.2.1/bootstrap-hover-dropdown.min.js"></script>
-<script type="text/javascript" th:src="@{/plugins/WOW-master/dist/wow.js}"></script>
+<script th:src="@{/js/header.js}"></script>
 
 </body>
 </html>
-

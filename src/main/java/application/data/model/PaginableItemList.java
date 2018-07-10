@@ -7,6 +7,7 @@ public class PaginableItemList<T> {
     private int pageNumber;
     private long totalProducts;
     private List<T> listData;
+    private long totalNews;
 
     public int getPageSize() {
         return pageSize;
@@ -40,4 +41,11 @@ public class PaginableItemList<T> {
         this.listData = listData;
     }
 
+    public long getTotalNews() {
+        return totalNews;
+    }
+
+    public void setTotalNews(long totalNews) {
+        this.totalNews = totalNews;
+    }
 }

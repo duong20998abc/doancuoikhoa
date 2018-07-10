@@ -36,7 +36,7 @@ public class OrderProductApiController {
                 orderProductService.addNewOrderProduct(orderProduct);
                 result.setSuccess(true);
                 result.setMessage("Lưu thành công");
-                result.setData(orderProduct.getOrderproductId());
+                result.setData(orderProduct.getId());
             }
         }catch (Exception e) {
             result.setSuccess(false);
@@ -79,7 +79,7 @@ public class OrderProductApiController {
                 orderProductService.addNewOrderProduct(orderProduct);
                 result.setSuccess(true);
                 result.setMessage("Lưu thành công");
-                result.setData(orderProduct.getOrderproductId());
+                result.setData(orderProduct.getId());
             }
         }catch (Exception e) {
             result.setSuccess(false);

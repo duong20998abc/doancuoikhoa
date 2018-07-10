@@ -33,7 +33,7 @@
     box-sizing: border-box;
 }
 .post-thumb-link img:hover{
-    background-color:   rgba(0,0,0,.3) none repeat scroll 0 0;
+    background-color:   rgba(0,0,0,.3) ;
 }
 .post-date-comment{
     list-style: outside none none;

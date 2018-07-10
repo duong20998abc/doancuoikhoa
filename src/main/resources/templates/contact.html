@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header-css">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tin tức-Siêu thị thể thao Online</title>
+
+</head>
+
+<link rel="stylesheet" type="text/css" th:href="@{/css/contact.css}"/>
+<body>
+
+<div th:replace="fragments/header :: header (vm=${vm})"></div>
+<div class="container" style="padding:70px 0 70px 0;">
+    <form class="cd-form floating-labels">
+
+        <fieldset>
+
+            <legend>Liên hệ</legend>
+
+
+
+            <div class="error-message">
+
+                <p>Xin hãy điền vào Email</p>
+
+            </div>
+
+
+
+            <div class="icon">
+
+                <label class="cd-label" for="cd-name">Tên</label>
+
+                <input class="user" type="text" name="cd-name" id="cd-name" required>
+
+            </div>
+
+
+
+            <div class="icon">
+
+                <label class="cd-label" for="cd-tel">Số điện thoại</label>
+
+                <input class="tel" type="text" name="cd-tel" id="cd-tel">
+
+            </div>
+
+
+
+            <div class="icon">
+
+                <label class="cd-label" for="cd-email">Email</label>
+
+                <input class="email error" type="email" name="cd-email" id="cd-email" required>
+
+            </div>
+
+        </fieldset>
+
+
+
+        <fieldset>
+
+
+
+
+
+            <div>
+
+
+
+
+
+                <div class="icon">
+
+                    <label class="cd-label" for="cd-textarea">Nội dung</label>
+
+                    <textarea class="message" name="cd-textarea" id="cd-textarea" required></textarea>
+
+                </div>
+
+
+
+                <div>
+
+                    <input type="submit" value="Send Message">
+
+                </div>
+
+            </div>
+
+        </fieldset>
+
+    </form>
+
+</div>
+
+
+<div th:replace="fragments/footer :: footer(vm=${vm})"></div>
+
+<script>
+    //    jQuery
+    //
+    //    Để xử lý hiệu ứng ở các thẻ , chúng ta cần có đoạn script sau.
+
+    jQuery(document).ready(function($){
+
+        if( $('.floating-labels').length > 0 ) floatLabels();
+
+
+
+        function floatLabels() {
+
+            var inputFields = $('.floating-labels .cd-label').next();
+
+            inputFields.each(function(){
+
+                var singleInput = $(this);
+
+//check if user is filling one of the form fields
+
+                checkVal(singleInput);
+
+                singleInput.on('change keyup', function(){
+
+                    checkVal(singleInput);
+
+                });
+
+            });
+
+        }
+
+
+
+        function checkVal(inputField) {
+
+            ( inputField.val() == '' ) ? inputField.prev('.cd-label').removeClass('float') : inputField.prev('.cd-label').addClass('float');
+
+        }
+
+    });
+</script>
+</body>
+</html>
