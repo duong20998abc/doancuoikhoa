@@ -9,6 +9,7 @@ import application.data.service.CartService;
 import application.data.service.OrderProductService;
 import application.data.service.OrderService;
 import application.viewmodel.cart.CartViewModel;
+import application.viewmodel.landing.LandingVM;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +22,9 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.Console;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -41,6 +44,10 @@ public class CartController {
 
     @GetMapping("/cart")
     public String cart(Model model, HttpServletResponse response, HttpServletRequest request) {
+
+//        LandingVM vm1 = new LandingVM();
+//        this.setLayoutHeaderVM(vm1);
+//        model.addAttribute("vm1",vm1);
 
         Cookie cookie[] = request.getCookies();
 
@@ -72,6 +79,30 @@ public class CartController {
 
     @GetMapping("/checkout")
     public String checkout( Model model, HttpServletResponse response, HttpServletRequest request) {
+        Cookie cookie[] = request.getCookies();
+
+        int cartid=0;
+
+        for (Cookie c : cookie){
+            if(c.getName().equals("cartid")){
+                cartid=Integer.parseInt(c.getValue());
+            }
+        }
+
+        CartViewModel vm = new CartViewModel();
+        Cart cart = cartService.findOne(cartid);
+
+
+        int sum=0;
+
+        for(CartProduct cartProduct : cart.getListCartProducts()){
+            sum+=cartProduct.price();
+        }
+
+        cart.setPrice(sum);
+        vm.setCart(cart);
+
+        model.addAttribute("vm",vm);
         model.addAttribute("order",new Order());
         return "checkout";
 }
@@ -90,12 +121,14 @@ public class CartController {
                 }
             }
         }
-
+        System.out.println(cartid);
         if(cartid!=0) {
             Cart cart = cartService.findOne(cartid);
-            if(cart.getUsername()!=null)    order.setUsername(cart.getUsername());
+            if(cart.getUsername()!=null){
+                order.setUsername(cart.getUsername());
+            }
             order.setGuid(cart.getGuid());
-
+            System.out.println(cart.getId());
             orderService.addNewOrder(order);
 
             List<OrderProduct> productOrders = new ArrayList<>();
@@ -109,10 +142,11 @@ public class CartController {
                 productOrder.setProduct(cartProduct.getProduct());
                 productOrder.setOrder(order);
                 productOrders.add(productOrder);
-                sum= sum + productOrder.getPrice();
+                sum= sum + productOrder.getPrice() * productOrder.getAmount();
             }
 
             order.setPrice(sum);
+            order.setCreatedDate(new Date());
 
             orderService.addNewOrder(order);
 
@@ -139,7 +173,7 @@ public class CartController {
             response.addCookie(cookie3);
 
         }
-
+        System.out.print(order.getId());
         return "redirect:/";
     }
 }

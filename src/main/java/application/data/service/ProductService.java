@@ -34,16 +34,16 @@ public class ProductService {
         return productRepository.getTotalProducts();
     }
 
-    public PaginableItemList<Product> getListProducts(int pageSize, int pageNumber) {
-        PaginableItemList<Product> paginableItemList = new PaginableItemList<>();
-        paginableItemList.setPageSize(pageSize);
-        paginableItemList.setPageNumber(pageNumber);
-
-        Page<Product> pages = productRepository.findAll(new PageRequest(pageNumber,pageSize));
-        paginableItemList.setTotalProducts(pages.getTotalElements());
-        paginableItemList.setListData(pages.getContent());
-        return paginableItemList;
-    }
+//    public PaginableItemList<Product> getListProducts(int pageSize, int pageNumber) {
+//        PaginableItemList<Product> paginableItemList = new PaginableItemList<>();
+//        paginableItemList.setPageSize(pageSize);
+//        paginableItemList.setPageNumber(pageNumber);
+//
+//        Page<Product> pages = productRepository.findAll(new PageRequest(pageNumber,pageSize));
+//        paginableItemList.setTotalProducts(pages.getTotalElements());
+//        paginableItemList.setListData(pages.getContent());
+//        return paginableItemList;
+//    }
 
     public Product findOne(int productid) {
         return productRepository.findOne(productid);
@@ -75,6 +75,15 @@ public class ProductService {
 
     public ArrayList<Product> getListProductsByCategory(int categoryid) {
         return productRepository.getProductsByCategory(categoryid);
+
+    }
+
+    public Product findByName(String name){
+        return productRepository.findByName(name);
+    }
+
+    public ArrayList<Product> findByNameContaining(String name){
+        return productRepository.findByNameContaining(name);
     }
 
 }

@@ -21,6 +21,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" th:href="@{/css/admin/adminElement.css}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.9.0/sweetalert2.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -253,21 +258,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             <div class="tab-content">
                 <div class="active tab-pane" id="all">
-                    <table class="table table-bordered table-striped tablex">
+                    <table class="table table-bordered table-striped tablex" id="Mytable">
                         <thead>
-                            <tr class="table-title">
-                                <th>Mã thành viên</th>
-                                <th>Ảnh thành viên</th>
-                                <th>Tên thành viên</th>
-                                <th>Chức vụ</th>
-                                <th>Mô tả </th>
-                                <th>Chỉnh sửa</th>
-                                <th style="color: red">Ban</th>
-                            </tr>
+                        <tr class="table-title">
+                            <th>Mã thành viên</th>
+                            <th>Ảnh thành viên</th>
+                            <th>Tên đăng nhập</th>
+                            <th>Tên đầy đủ</th>
+                            <th>Ngày tạo</th>
+                            <th>Chức vụ</th>
+                            <th style="color: red">Ban</th>
+                        </tr>
                         </thead>
 
                         <tbody>
-                            <tr></tr>
+
                         </tbody>
                     </table>
                 </div>
@@ -287,5 +292,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script type="text/javascript" th:src="@{/plugins/chart.js/Chart.js}"></script>
 <script type="text/javascript" th:src="@{/dist/js/dashboard.js}"></script>
 <script type="text/javascript" th:src="@{/dist/js/demo.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/locale/vi.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.9.0/sweetalert2.all.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+<script th:src="@{/js/adminMember.js}"></script>
 </body>
 </html>

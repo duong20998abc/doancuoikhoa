@@ -37,7 +37,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         //ten role phai dat ten trong DB la ROLE_ADMIN, ROLE_SUPPADMIN, ROLE_USER
         http.authorizeRequests()
                 .antMatchers("/","/register-user","/about","/product/**","/api/**"
-                        ,"/signin/**","/signup/**","/link/**","/list-products/**").permitAll()
+                        ,"/signin/**","/signup/**","/link/**","/list-products/**", "/user/**","/cart/**").permitAll()
                 .antMatchers("/admin/**").hasAnyRole("ADMIN")
                 .antMatchers().hasAnyRole("USER")
                 .anyRequest().authenticated()

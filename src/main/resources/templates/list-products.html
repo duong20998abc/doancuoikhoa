@@ -1,288 +1,284 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+
+<head th:replace="fragments/header :: header-css">
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Siêu thị thể thao Online</title>
+    <title>Tin tức-Siêu thị thể thao Online</title>
 
-    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/headerandfooter.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/list-products.css}"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.19.3/sweetalert2.min.css">
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" th:href="@{/plugins/WOW-master/css/libs/animate.css}">
 </head>
-
+<link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/list-products.css}"/>
 <body>
-    <div th:replace="fragments/header :: header (vm=${vm})"></div>
 
-    <div class="container">
-        <div th:if="${cat != null}" class="order-breadcrumbs" >
-            <ul class="breadcrumb" style="background: #e3e7ed">
-                <li><a th:href="@{/}">Trang chủ</a></li>
-                <li>
-                    <a th:href="@{'~/list-products/'+${cat.getId()}}">
-                        <span th:text="${cat.getName()}"></span>
-                    </a>
-                </li>
-            </ul>
-        </div>
+<div th:replace="fragments/header :: header (vm=${vm})"></div>
 
-        <div class="list-products-intro" th:if="${cat.getId() == 1}">
-            <h2 style="color: black; padding-bottom: 10px">
-                <strong th:text="${cat.getName()}"></strong>
-            </h2>
-            <div class="list-products-intro__banner" >
-                <div class="spr-banner">
-                    <div id="bannerSlider" class="carousel slide" data-ride="carousel">
-                        <!-- Indicators -->
-                        <ol class="carousel-indicators">
-                            <th:block th:each="banner,iter : ${vm.getListBanners()}">
-                                <li data-target="#bannerSlider" th:if="${iter.index == 0}" th:attr="data-slide-to=${iter.index}" class="active"></li>
-                                <li data-target="#bannerSlider" th:unless="${iter.index == 0}" th:attr="data-slide-to=${iter.index}"></li>
-                            </th:block>
-                        </ol>
-
-                        <!-- Wrapper for slides -->
-                        <div class="carousel-inner">
-                            <th:block th:each="banner,iter : ${vm.getListBanners()}">
-                                <div class="item active" th:if="${iter.index == 0}">
-                                    <img th:src="${banner.getLink()}" th:alt="${banner.getAltText()}">
-                                </div>
-
-                                <div class="item" th:unless="${iter.index == 0}">
-                                    <img th:src="${banner.getLink()}" th:alt="${banner.getAltText()}">
-                                </div>
-                            </th:block>
-                        </div>
-
-                        <!-- Left and right controls -->
-                        <a class="left carousel-control" href="#bannerSlider" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="right carousel-control" href="#bannerSlider" data-slide="next">
-                            <span class="glyphicon glyphicon-chevron-right"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="list-products-intro__content">
-                <h3 style="color: red"><strong>Sport Online – Địa chỉ bán máy chạy bộ chính hãng, giá tốt tại Hà Nội</strong></h3>
-                <p><a th:href="@{/}">Sport Online</a> chuyên phân phối các dòng máy chạy bộ điện thương hiệu Đài Loan như Pro Fitness,
-                    Viking, Tech Fitness, HQ… Ngoài ra Sport Online cũng là đại lý cấp 1 lâu năm của các thương hiệu máy chạy bộ
-                    Động Lực và Mofit.</p>
-                <p>Các sản phẩm <a th:href="@{'~/list-products/'+ ${cat.getId()}}">máy chạy bộ</a> bán tại Sport Online là những mẫu được
-                    lựa chọn kỹ lưỡng phù hợp nhất với nhu cầu của người Việt Nam. Là nhà phân phối chính thức,
-                    trực tiếp không qua trung gian nên giá bán máy chạy bộ tại Sport Online luôn tốt nhất.</p>
-                <p>Các mẫu sản phẩm máy chạy bộ Đài Loan đều được bảo hành động cơ 5-6 năm. Với công nghệ sản xuất tiên tiến từ Mỹ sẽ mang lại
-                    những mẫu máy chạy bộ chất lượng tới người tiêu dùng Việt Nam.</p>
-            </div>
-        </div>
-
-        <div class="list-products-intro" th:if="${cat.getId() == 2}">
-            <div class="list-products-intro__content">
-                <h2 style="color: black">
-                    <strong th:text="${cat.getName()}"></strong>
-                </h2>
-                <div class="why-choose">
-                    <h4 style="color: blue">
-                        <strong>Tại sao nên chọn mua sản phẩm tại Sportonline</strong>
-                    </h4>
-                    <p><a th:href="@{/}">Sport Online</a> đã có 4 năm phân phối và cung cấp các mẫu xe đạp tập thể dục.
-                        Để mang lại các sản phẩm chất lượng, mỗi mẫu xe đạp tập thể dục được lựa chọn đều được xem xét
-                        kỹ lưỡng về chất lượng.</p>
-                    <p>Các sản phẩm <a th:href="@{'~/list-products/'+ ${cat.getId()}}">xe đạp tập thể dục</a> bán tại Sport Online là những mẫu được
-                        lựa chọn kỹ lưỡng phù hợp nhất với nhu cầu của người Việt Nam. Là nhà phân phối chính thức,
-                        trực tiếp không qua trung gian nên giá bán máy chạy bộ tại Sport Online luôn tốt nhất.</p>
-                    <p>Tất cả sản phẩm bán ra trên website đều được lựa chọn kỹ lưỡng về tiêu chí chất lượng và giá cả.
-                        Các mẫu xe đạp tập đều chính hãng có nguồn gốc xuất xứ rõ ràng. Chế độ bảo hành uy tín từ các hãng thể thao hàng đầu.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="list-products-intro" th:if="${cat.getId() == 3}">
-            <div class="list-products-intro__content">
-                <h2 style="color: black">
-                    <strong th:text="${cat.getName()}"></strong>
-                </h2>
-                <div class="benefit">
-                    <h4 style="color: blue">
-                        <strong>Lợi ích của việc sử dụng dụng cụ thể hình tại nhà</strong>
-                    </h4>
-                    <ul class="benefit-menu">
-                        <li>Chủ động thời gian tập luyện.</li>
-                        <li>Tiết kiệm chi phí</li>
-                        <li>Tâm lý thoải mái tập luyện</li>
-                        <li>Rèn luyện cơ thể, cải thiện vóc dáng</li>
-                        <li>Giảm stress, tinh thần thoải mái hơn</li>
-                    </ul>
-                </div>
-
-                <div class="why-choose">
-                    <h4 style="color: blue">
-                        <strong>Tại sao nên chọn mua sản phẩm tại Sportonline</strong>
-                    </h4>
-                    <p><a th:href="@{/}">Sport Online</a> là nhà cung cấp dụng cụ tập thể hình,
-                        máy tập gym chuyên nghiệp tại Việt Nam. Chúng tôi cung cấp các dòng máy tập sản xuất trong nước
-                        và nhập khẩu trực tiếp..</p>
-                    <p>Các sản phẩm <a th:href="@{'~/list-products/'+ ${cat.getId()}}">dụng cụ thể hình</a> bán tại Sport Online là những mẫu được
-                        lựa chọn kỹ lưỡng phù hợp nhất với nhu cầu của người Việt Nam. Là nhà phân phối chính thức,
-                        trực tiếp không qua trung gian nên giá bán dụng cụ thể hình tại Sport Online luôn tốt nhất.</p>
-                    <p>Mua hàng tại Sport Online bạn sẽ được tư vấn nhiệt tình nhất, hiệu quả, đúng nhu cầu sử dụng của bạn.
-                        Các sản phẩm tại Thể Thao Online rất đa dạng về mẫu mã, chất lượng đảm bảo, bảo hành đầy đủ cho từng sản phẩm..</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="list-products-intro" th:if="${cat.getId() == 4}">
-            <div class="list-products-intro__content">
-                <h2 style="color: black">
-                    <strong th:text="${cat.getName()}"></strong>
-                </h2>
-                <div class="why-choose">
-                    <h4 style="color: blue">
-                        <strong>Sport Online – Địa chỉ bán dụng cụ tập Yoga chính hãng, giá rẻ</strong>
-                    </h4>
-                    <p><a th:href="@{/}">Sport Online</a> chuyên cấp trang thiết bị, máy móc,
-                        <a th:href="@{'~/list-products/'+ ${cat.getId()}}">dụng cụ yoga</a> chính hãng, chuyên nghiệp tại Việt Nam</p>
-                    <p>Các sản phẩm <a th:href="@{'~/list-products/'+ ${cat.getId()}}">dụng cụ yoga</a> bán tại Sport Online là những mẫu được
-                        lựa chọn kỹ lưỡng phù hợp nhất với nhu cầu của người Việt Nam. Là nhà phân phối chính thức,
-                        trực tiếp không qua trung gian nên giá bán máy chạy bộ tại Sport Online luôn tốt nhất.</p>
-                    <p>Ngoài ra chúng tôi cung cung cấp trang thiết bị tập thẩm mỹ như bục yoga, bục dẫm nhảy, dây nhảy…</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="list-products-intro" th:if="${cat.getId() == 5}">
-            <div class="list-products-intro__content">
-                <h2 style="color: black">
-                    <strong th:text="${cat.getName()}"></strong>
-                </h2>
-                <div class="why-choose">
-                    <h4 style="color: blue">
-                        <strong>Sport Online – Địa chỉ mua sắm tin cậy dụng cụ bơi lội chất lượng, giá tốt</strong>
-                    </h4>
-                    <p><a th:href="@{/}">Sport Online</a> cung cấp đa dạng dụng cụ bơi lội Hà Nội và không ngừng bổ sung các mẫu mã mới,
-                        làm hài lòng cả những khách hàng khó tính nhất. Với những chính sách bán hàng nhiều ưu đãi và dịch vụ khách hàng tốt,
-                        đảm bảo uy tín với giá thành cam kết tốt nhất thị trường, chúng tôi là một trong những địa chỉ bán dụng cụ bơi lội
-                        hàng đầu Việt Nam.</p>
-                    <p>Các sản phẩm <a th:href="@{'~/list-products/'+ ${cat.getId()}}">dụng cụ bơi lội</a> bán tại Sport Online là những mẫu được
-                        lựa chọn kỹ lưỡng phù hợp nhất với nhu cầu của người Việt Nam. Là nhà phân phối chính thức,
-                        trực tiếp không qua trung gian nên giá bán máy chạy bộ tại Sport Online luôn tốt nhất.</p>
-                    <p>Ngay từ bây giờ, bạn có thể nhấc điện thoại lên và gọi điện cho Sport Online theo số
-                        Hotline: <strong>09775 127 88</strong>
-                        để được tư vấn tận tình chu đáo lựa chọn các sản phẩm phù hợp nhất cho mọi thành viên trong gia đình.
-                        Để tham khảo thêm nhiều thông tin hữu ích bạn hãy truy cập ngay website của chúng tôi nhé!
-                        Chúc bạn một mùa hè bổ ích và lý thú!</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="list-products-intro" th:if="${cat.getId() == 6}">
-            <div class="list-products-intro__content">
-                <h2 style="color: black">
-                    <strong th:text="${cat.getName()}"></strong>
-                </h2>
-                <div class="why-choose">
-                    <h4 style="color: blue">
-                        <strong>Sport Online – Địa chỉ mua sắm tin cậy dụng cụ bơi lội chất lượng, giá tốt</strong>
-                    </h4>
-                    <p><a th:href="@{/}">Sport Online</a> cung cấp đa dạng các loại giày thể thao và không ngừng bổ sung các mẫu mã mới,
-                        làm hài lòng cả những khách hàng khó tính nhất. Với những chính sách bán hàng nhiều ưu đãi và dịch vụ khách hàng tốt,
-                        đảm bảo uy tín với giá thành cam kết tốt nhất thị trường, chúng tôi là một trong những địa chỉ bán dụng cụ bơi lội
-                        hàng đầu Việt Nam.</p>
-                    <p>Các sản phẩm <a th:href="@{'~/list-products/'+ ${cat.getId()}}">giày thể thao</a> bán tại Sport Online là những
-                        mẫu được lựa chọn kỹ lưỡng phù hợp nhất với nhu cầu của người Việt Nam. Là nhà phân phối chính thức,
-                        trực tiếp không qua trung gian nên giá bán máy chạy bộ tại Sport Online luôn tốt nhất.</p>
-                    <p>Ngay từ bây giờ, bạn có thể nhấc điện thoại lên và gọi điện cho Sport Online theo số
-                        Hotline: <strong>09775 127 88</strong>
-                        để được tư vấn tận tình chu đáo lựa chọn các sản phẩm phù hợp nhất cho mọi thành viên trong gia đình.
-                        Để tham khảo thêm nhiều thông tin hữu ích bạn hãy truy cập ngay website của chúng tôi nhé!</p>
-                </div>
-            </div>
-        </div>
-
-        <section class="content">
-            <div th:if="${cat != null}" class="row">
-                <h3 style="margin-left: 15px;margin-bottom: 30px;">
-                    <strong th:text="${cat.getName()}"></strong>
-                </h3>
-                <div class="col-md-4 col-sm-6 col-xs-12 sanpham sanpham1" th:each="product : ${cat.getProducts()}">
-                    <div class="item-product">
-                        <div class="item-product__inner">
-                            <div class="box-right-right col-sm-6">
-                                <div class="item-product__image">
-                                    <a class="item-product__img__link" th:href="@{'~/product/detail/' + ${product.getId()}}">
-                                        <img th:src="${product.getImage()}" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="box-right-left col-sm-6">
-                                <div class="item-product__info">
-                                    <div class="item-product__title">
-                                        <a class="item-product__img__link" th:href="@{'~/product/detail/' + ${product.getId()}}">
-                                            <span th:text="${product.getName()}"></span>
-                                        </a>
-                                    </div>
-                                    <div class="item-product__price">
-                                        <div class="product-price">
-                                            <del>
-                                                <span>20.800.000đ</span>
-                                            </del>
-                                            <span class="sale-off5">-18%</span>
-                                            <br>
-                                            <ins class="after-sale">
-                                                <span th:text="${product.getPrice()}"></span>
-                                                <span>đ</span>
-                                            </ins>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--<div class="item-product__amount">-->
-                                <!--<span th:text="${product.getAmount()}"></span>-->
-                                <!--</div>-->
-                                <div class="product-rate">
-                                    <div class="product-rating" style="with:100%;"></div>
-                                </div>
-                                <div class="product-extra-link">
-                                    <a class="add-to-cart" th:attr="data-product=${product.getId()}">
-                                        <i class="fa fa-shopping-basket" aria-hidden="true"></i>
-                                    </a>
-                                    <a class="add-to-favorite" href=""><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                    <a class="add-to-refresh" href=""><i class="fa fa-refresh" aria-hidden="true"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="row" th:unless="${cat.getProducts().size()!=0}">
-                <h2>Không có sản phẩm nào</h2>
-                <button class="btn btn-default"><a th:href="@{/}">Quay về trang chủ</a></button>
-            </div>
-        </section>
+<div class="container wow fadeInLeft" data-wow-duration="1s" style="padding-top:30px;">
+    <div th:if="${cat != null}" class="order-breadcrumbs" >
+        <ul class="breadcrumb" style="background: #e3e7ed">
+            <li><a th:href="@{/}">Trang chủ</a></li>
+            <li>
+                <a th:href="@{'~/list-products/'+${cat.getId()}}">
+                    <span th:text="${cat.getName()}"></span>
+                </a>
+            </li>
+        </ul>
     </div>
 
-    <div th:replace="fragments/footer :: footer"></div>
+    <div class="list-products-intro" th:if="${cat.getId() == 1}">
+        <h2 style="color: black; padding-bottom: 10px">
+            <strong th:text="${cat.getName()}"></strong>
+        </h2>
+        <div class="list-products-intro__banner" >
+            <div class="spr-banner">
+                <div id="bannerSlider" class="carousel slide" data-ride="carousel" slide wow fadeInRight>
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <th:block th:each="banner,iter : ${vm.getListBanners()}">
+                            <li data-target="#bannerSlider" th:if="${iter.index == 0}" th:attr="data-slide-to=${iter.index}" class="active"></li>
+                            <li data-target="#bannerSlider" th:unless="${iter.index == 0}" th:attr="data-slide-to=${iter.index}"></li>
+                        </th:block>
+                    </ol>
 
-    <script type="text/javascript" th:src="@{/plugins/WOW-master/dist/wow.js}"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.9.0/sweetalert2.all.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/locale/vi.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
-    <script type="text/javascript" th:src = "@{/js/header.js}"></script>
-    <script type="text/javascript" th:src="@{/js/index.js}"></script>
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+                        <th:block th:each="banner,iter : ${vm.getListBanners()}">
+                            <div class="item active" th:if="${iter.index == 0}">
+                                <img th:src="${banner.getLink()}" th:alt="${banner.getAltText()}">
+                            </div>
+
+                            <div class="item" th:unless="${iter.index == 0}">
+                                <img th:src="${banner.getLink()}" th:alt="${banner.getAltText()}">
+                            </div>
+                        </th:block>
+                    </div>
+
+                    <!-- Left and right controls -->
+                    <a class="left carousel-control" href="#bannerSlider" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#bannerSlider" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="list-products-intro__content">
+            <h3 style="color: red"><strong>Sport Online – Địa chỉ bán máy chạy bộ chính hãng, giá tốt tại Hà Nội</strong></h3>
+            <p><a th:href="@{/}">Sport Online</a> chuyên phân phối các dòng máy chạy bộ điện thương hiệu Đài Loan như Pro Fitness,
+                Viking, Tech Fitness, HQ… Ngoài ra Sport Online cũng là đại lý cấp 1 lâu năm của các thương hiệu máy chạy bộ
+                Động Lực và Mofit.</p>
+            <p>Các sản phẩm <a th:href="@{'~/list-products/'+ ${cat.getId()}}">máy chạy bộ</a> bán tại Sport Online là những mẫu được
+                lựa chọn kỹ lưỡng phù hợp nhất với nhu cầu của người Việt Nam. Là nhà phân phối chính thức,
+                trực tiếp không qua trung gian nên giá bán máy chạy bộ tại Sport Online luôn tốt nhất.</p>
+            <p>Các mẫu sản phẩm máy chạy bộ Đài Loan đều được bảo hành động cơ 5-6 năm. Với công nghệ sản xuất tiên tiến từ Mỹ sẽ mang lại
+                những mẫu máy chạy bộ chất lượng tới người tiêu dùng Việt Nam.</p>
+        </div>
+    </div>
+
+    <div class="list-products-intro" th:if="${cat.getId() == 2}">
+        <div class="list-products-intro__content">
+            <h2 style="color: black">
+                <strong th:text="${cat.getName()}"></strong>
+            </h2>
+            <div class="why-choose">
+                <h4 style="color: blue">
+                    <strong>Tại sao nên chọn mua sản phẩm tại Sportonline</strong>
+                </h4>
+                <p><a th:href="@{/}">Sport Online</a> đã có 4 năm phân phối và cung cấp các mẫu xe đạp tập thể dục.
+                    Để mang lại các sản phẩm chất lượng, mỗi mẫu xe đạp tập thể dục được lựa chọn đều được xem xét
+                    kỹ lưỡng về chất lượng.</p>
+                <p>Các sản phẩm <a th:href="@{'~/list-products/'+ ${cat.getId()}}">xe đạp tập thể dục</a> bán tại Sport Online là những mẫu được
+                    lựa chọn kỹ lưỡng phù hợp nhất với nhu cầu của người Việt Nam. Là nhà phân phối chính thức,
+                    trực tiếp không qua trung gian nên giá bán máy chạy bộ tại Sport Online luôn tốt nhất.</p>
+                <p>Tất cả sản phẩm bán ra trên website đều được lựa chọn kỹ lưỡng về tiêu chí chất lượng và giá cả.
+                    Các mẫu xe đạp tập đều chính hãng có nguồn gốc xuất xứ rõ ràng. Chế độ bảo hành uy tín từ các hãng thể thao hàng đầu.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="list-products-intro" th:if="${cat.getId() == 3}">
+        <div class="list-products-intro__content">
+            <h2 style="color: black">
+                <strong th:text="${cat.getName()}"></strong>
+            </h2>
+            <div class="benefit">
+                <h4 style="color: blue">
+                    <strong>Lợi ích của việc sử dụng dụng cụ thể hình tại nhà</strong>
+                </h4>
+                <ul class="benefit-menu">
+                    <li>Chủ động thời gian tập luyện.</li>
+                    <li>Tiết kiệm chi phí</li>
+                    <li>Tâm lý thoải mái tập luyện</li>
+                    <li>Rèn luyện cơ thể, cải thiện vóc dáng</li>
+                    <li>Giảm stress, tinh thần thoải mái hơn</li>
+                </ul>
+            </div>
+
+            <div class="why-choose">
+                <h4 style="color: blue">
+                    <strong>Tại sao nên chọn mua sản phẩm tại Sportonline</strong>
+                </h4>
+                <p><a th:href="@{/}">Sport Online</a> là nhà cung cấp dụng cụ tập thể hình,
+                    máy tập gym chuyên nghiệp tại Việt Nam. Chúng tôi cung cấp các dòng máy tập sản xuất trong nước
+                    và nhập khẩu trực tiếp..</p>
+                <p>Các sản phẩm <a th:href="@{'~/list-products/'+ ${cat.getId()}}">dụng cụ thể hình</a> bán tại Sport Online là những mẫu được
+                    lựa chọn kỹ lưỡng phù hợp nhất với nhu cầu của người Việt Nam. Là nhà phân phối chính thức,
+                    trực tiếp không qua trung gian nên giá bán dụng cụ thể hình tại Sport Online luôn tốt nhất.</p>
+                <p>Mua hàng tại Sport Online bạn sẽ được tư vấn nhiệt tình nhất, hiệu quả, đúng nhu cầu sử dụng của bạn.
+                    Các sản phẩm tại Thể Thao Online rất đa dạng về mẫu mã, chất lượng đảm bảo, bảo hành đầy đủ cho từng sản phẩm..</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="list-products-intro" th:if="${cat.getId() == 4}">
+        <div class="list-products-intro__content">
+            <h2 style="color: black">
+                <strong th:text="${cat.getName()}"></strong>
+            </h2>
+            <div class="why-choose">
+                <h4 style="color: blue">
+                    <strong>Sport Online – Địa chỉ bán dụng cụ tập Yoga chính hãng, giá rẻ</strong>
+                </h4>
+                <p><a th:href="@{/}">Sport Online</a> chuyên cấp trang thiết bị, máy móc,
+                    <a th:href="@{'~/list-products/'+ ${cat.getId()}}">dụng cụ yoga</a> chính hãng, chuyên nghiệp tại Việt Nam</p>
+                <p>Các sản phẩm <a th:href="@{'~/list-products/'+ ${cat.getId()}}">dụng cụ yoga</a> bán tại Sport Online là những mẫu được
+                    lựa chọn kỹ lưỡng phù hợp nhất với nhu cầu của người Việt Nam. Là nhà phân phối chính thức,
+                    trực tiếp không qua trung gian nên giá bán máy chạy bộ tại Sport Online luôn tốt nhất.</p>
+                <p>Ngoài ra chúng tôi cung cung cấp trang thiết bị tập thẩm mỹ như bục yoga, bục dẫm nhảy, dây nhảy…</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="list-products-intro" th:if="${cat.getId() == 5}">
+        <div class="list-products-intro__content">
+            <h2 style="color: black">
+                <strong th:text="${cat.getName()}"></strong>
+            </h2>
+            <div class="why-choose">
+                <h4 style="color: blue">
+                    <strong>Sport Online – Địa chỉ mua sắm tin cậy dụng cụ bơi lội chất lượng, giá tốt</strong>
+                </h4>
+                <p><a th:href="@{/}">Sport Online</a> cung cấp đa dạng dụng cụ bơi lội Hà Nội và không ngừng bổ sung các mẫu mã mới,
+                    làm hài lòng cả những khách hàng khó tính nhất. Với những chính sách bán hàng nhiều ưu đãi và dịch vụ khách hàng tốt,
+                    đảm bảo uy tín với giá thành cam kết tốt nhất thị trường, chúng tôi là một trong những địa chỉ bán dụng cụ bơi lội
+                    hàng đầu Việt Nam.</p>
+                <p>Các sản phẩm <a th:href="@{'~/list-products/'+ ${cat.getId()}}">dụng cụ bơi lội</a> bán tại Sport Online là những mẫu được
+                    lựa chọn kỹ lưỡng phù hợp nhất với nhu cầu của người Việt Nam. Là nhà phân phối chính thức,
+                    trực tiếp không qua trung gian nên giá bán máy chạy bộ tại Sport Online luôn tốt nhất.</p>
+                <p>Ngay từ bây giờ, bạn có thể nhấc điện thoại lên và gọi điện cho Sport Online theo số
+                    Hotline: <strong>09775 127 88</strong>
+                    để được tư vấn tận tình chu đáo lựa chọn các sản phẩm phù hợp nhất cho mọi thành viên trong gia đình.
+                    Để tham khảo thêm nhiều thông tin hữu ích bạn hãy truy cập ngay website của chúng tôi nhé!
+                    Chúc bạn một mùa hè bổ ích và lý thú!</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="list-products-intro" th:if="${cat.getId() == 6}">
+        <div class="list-products-intro__content">
+            <h2 style="color: black">
+                <strong th:text="${cat.getName()}"></strong>
+            </h2>
+            <div class="why-choose">
+                <h4 style="color: blue">
+                    <strong>Sport Online – Địa chỉ mua sắm tin cậy dụng cụ bơi lội chất lượng, giá tốt</strong>
+                </h4>
+                <p><a th:href="@{/}">Sport Online</a> cung cấp đa dạng các loại giày thể thao và không ngừng bổ sung các mẫu mã mới,
+                    làm hài lòng cả những khách hàng khó tính nhất. Với những chính sách bán hàng nhiều ưu đãi và dịch vụ khách hàng tốt,
+                    đảm bảo uy tín với giá thành cam kết tốt nhất thị trường, chúng tôi là một trong những địa chỉ bán dụng cụ bơi lội
+                    hàng đầu Việt Nam.</p>
+                <p>Các sản phẩm <a th:href="@{'~/list-products/'+ ${cat.getId()}}">giày thể thao</a> bán tại Sport Online là những
+                    mẫu được lựa chọn kỹ lưỡng phù hợp nhất với nhu cầu của người Việt Nam. Là nhà phân phối chính thức,
+                    trực tiếp không qua trung gian nên giá bán máy chạy bộ tại Sport Online luôn tốt nhất.</p>
+                <p>Ngay từ bây giờ, bạn có thể nhấc điện thoại lên và gọi điện cho Sport Online theo số
+                    Hotline: <strong>09775 127 88</strong>
+                    để được tư vấn tận tình chu đáo lựa chọn các sản phẩm phù hợp nhất cho mọi thành viên trong gia đình.
+                    Để tham khảo thêm nhiều thông tin hữu ích bạn hãy truy cập ngay website của chúng tôi nhé!</p>
+            </div>
+        </div>
+    </div>
+
+    <section class="content">
+        <div th:if="${cat != null}" class="row">
+            <h3 style="margin-left: 15px;margin-bottom: 30px;">
+                <strong th:text="${cat.getName()}"></strong>
+            </h3>
+            <div class="col-md-4 col-sm-6 col-xs-12 sanpham sanpham1" th:each="product : ${cat.getProducts()}">
+                <div class="item-product">
+                    <div class="item-product__inner">
+                        <div class="box-right-right col-sm-6">
+                            <div class="item-product__image">
+                                <a class="item-product__img__link" th:href="@{'~/product/detail/' + ${product.getId()}}">
+                                    <img th:src="${product.getImage()}" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="box-right-left col-sm-6">
+                            <div class="item-product__info">
+                                <div class="item-product__title">
+                                    <a class="item-product__img__link" th:href="@{'~/product/detail/' + ${product.getId()}}">
+                                        <span th:text="${product.getName()}"></span>
+                                    </a>
+                                </div>
+                                <div class="item-product__price">
+                                    <div class="product-price">
+                                        <del>
+                                            <span>20.800.000đ</span>
+                                        </del>
+                                        <span class="sale-off5">-18%</span>
+                                        <br>
+                                        <ins class="after-sale">
+                                            <span th:text="${product.getPrice()}"></span>
+                                            <span>đ</span>
+                                        </ins>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<div class="item-product__amount">-->
+                            <!--<span th:text="${product.getAmount()}"></span>-->
+                            <!--</div>-->
+                            <div class="product-rate">
+                                <div class="product-rating" style="with:100%;"></div>
+                            </div>
+                            <div class="product-extra-link">
+                                <a class="add-to-cart" th:attr="data-product=${product.getId()}">
+                                    <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+                                </a>
+                                <a class="add-to-favorite" href=""><i class="fa fa-heart" aria-hidden="true"></i></a>
+                                <a class="add-to-refresh" href=""><i class="fa fa-refresh" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row" th:unless="${cat.getProducts().size()!=0}">
+            <h2>Không có sản phẩm nào</h2>
+            <button class="btn btn-default"><a th:href="@{/}">Quay về trang chủ</a></button>
+        </div>
+    </section>
+</div>
+
+<div th:replace="fragments/footer :: footer(vm=${vm})"></div>
+
+<script type="text/javascript" th:src="@{/plugins/WOW-master/dist/wow.js}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.9.0/sweetalert2.all.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/locale/vi.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+<script type="text/javascript" th:src = "@{/js/header.js}"></script>
+<script type="text/javascript" th:src="@{/js/index.js}"></script>
 </body>
 </html>

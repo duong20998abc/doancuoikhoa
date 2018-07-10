@@ -37,16 +37,16 @@ public class NewService {
         return newRepository.getTotalNews();
     }
 
-//    public PaginableItemList<New> getListNews(int pageSize, int pageNumber) {
-//        PaginableItemList<New> paginableItemList = new PaginableItemList<>();
-//        paginableItemList.setPageSize(pageSize);
-//        paginableItemList.setPageNumber(pageNumber);
-//
-//        Page<New> pages = newRepository.findAll(new PageRequest(pageNumber,pageSize));
-//        paginableItemList.setTotalNews(pages.getTotalElements());
-//        paginableItemList.setListData(pages.getContent());
-//        return paginableItemList;
-//    }
+    public PaginableItemList<New> getListNews(int pageSize, int pageNumber) {
+        PaginableItemList<New> paginableItemList = new PaginableItemList<>();
+        paginableItemList.setPageSize(pageSize);
+        paginableItemList.setPageNumber(pageNumber);
+
+        Page<New> pages = newRepository.findAll(new PageRequest(pageNumber,pageSize));
+        paginableItemList.setTotalNews(pages.getTotalElements());
+        paginableItemList.setListData(pages.getContent());
+        return paginableItemList;
+    }
 
     public New findOne(int newid) {
         return newRepository.findOne(newid);

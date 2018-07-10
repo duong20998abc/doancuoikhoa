@@ -216,4 +216,25 @@ public class ProductApiController {
         }
         return result;
     }
+
+    @GetMapping("/findbyname/{productName}")
+    public BaseApiResult listProductByName(@PathVariable String productName){
+        DataApiResult result = new DataApiResult();
+        try {
+            ModelMapper modelMapper= new ModelMapper();
+            Product existProduct = productService.findByName(productName);
+            ProductDetailModel productDetailModel= modelMapper.map(existProduct,ProductDetailModel.class);
+            if (productDetailModel == null){
+                result.setMessage("Can't find product");
+            }else {
+                result.setSuccess(true);
+            }
+            result.setData(productDetailModel);
+        } catch (Exception e) {
+            result.setSuccess(false);
+            result.setMessage(e.getMessage());
+        }
+        return result;
+
+    }
 }

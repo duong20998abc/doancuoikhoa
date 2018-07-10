@@ -8,9 +8,11 @@
     <title>Tin tức-Siêu thị thể thao Online</title>
 
 </head>
+
 <link rel="stylesheet" type="text/css" th:href="@{/css/news.css}"/>
 <body>
 <div th:replace="fragments/header :: header (vm=${vm})"></div>
+
 <div class="container">
     <div class="main-content col-sm-9">
         <div class="content-blog-page">
@@ -32,13 +34,24 @@
                                 </ul>
                                 <h3 class="post-title"><a href="" th:text="${news.getTitle()}"></a></h3>
                                 <p class="desc" th:text="${news.getContent()}"></p>
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <ul class="pagination" th:if="${0 < adminvm.getTotalPagingItems()}") >
+            <th:block th:each="indexPage : ${#numbers.sequence(1, adminvm.getTotalPagingItems(), 1)}">
+                <li class="active" th:if="${indexPage == adminvm.getCurrentPage()}">
+                    <a th:href="@{'/news?pageNumber=' + ${indexPage}}"><span th:text="${indexPage}"></span></a>
+                </li>
+                <li th:unless="${indexPage == adminvm.getCurrentPage()}">
+                    <a th:href="@{'/news?pageNumber=' + ${indexPage}}"><span th:text="${indexPage}"></span></a>
+                </li>
+            </th:block>
+        </ul>
+
     </div>
     <div class="sidebar col-sm-3">
         <div class="sidebar-1">

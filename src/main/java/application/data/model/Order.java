@@ -41,12 +41,12 @@ public class Order {
                     CascadeType.PERSIST,
                     CascadeType.MERGE
             })
-    @JoinTable(name = "tbl_product_order",
+    @JoinTable(name = "tbl_orderproduct",
             joinColumns = {@JoinColumn(name = "orderid")},
             inverseJoinColumns = {@JoinColumn(name = "productid")})
     private List<Product> listProducts = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
+    @OneToMany(mappedBy = "order",cascade = CascadeType.ALL)
     private List<OrderProduct> listOrders = new ArrayList<>();
 
     public int getId() {

@@ -1,0 +1,44 @@
+/*css for profile.html*/
+.menu-bar {
+    padding-left: 10px;
+    margin-top: 20px;
+}
+
+.panel-info, .panel-order-list {
+    margin-top: 20px;
+}
+
+.member-info {
+    font-weight: bold;
+    text-align: center;
+    font-size: 18pt;
+}
+
+#modal-edit-info {
+    z-index: 10000;
+}
+
+.img-select-block {
+    position: relative;
+}
+
+#input-select-img-avatar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+}
+
+.modal-content {
+    padding-left: 7px;
+}
+
+.form-block {
+    margin-top: 15px;
+}
+
+.btn-feedback {
+    margin-top: 20px;
+}

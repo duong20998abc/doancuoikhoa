@@ -1,5 +1,8 @@
 package application.data.model;
 
+import application.extension.CustomDateSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -19,6 +22,7 @@ public class User {
     @Column(name = "realname")
     private String realname;
 
+    @JsonSerialize(using = CustomDateSerializer.class)
     @Column(name = "created_date")
     private Date createdDate;
 

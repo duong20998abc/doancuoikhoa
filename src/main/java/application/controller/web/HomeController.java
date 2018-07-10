@@ -4,6 +4,7 @@ import application.constant.StatusRegisterUserEnum;
 import application.data.model.*;
 import application.data.service.*;
 import application.model.*;
+import application.viewmodel.admin.AdminVM;
 import application.viewmodel.common.ProductVM;
 import application.viewmodel.landing.BannerVM;
 import application.viewmodel.landing.LandingVM;
@@ -229,11 +230,33 @@ public class HomeController extends BaseController {
     }
 
     @GetMapping(path = "/news")
-    public String news(Model model){
+    public String news(Model model, @RequestParam(value = "pageNumber", required = false)Integer pageNumber){
         LandingVM vm = new LandingVM();
         this.setLayoutHeaderVM(vm);
         model.addAttribute("vm",vm);
+
+        AdminVM adminVM = new AdminVM();
         ArrayList<New> news = newService.getAll();
+
+        int pageSize = 5;
+        if(pageNumber == null) {
+            pageNumber = 1;
+        }
+
+        PaginableItemList<New> paginableItemList = newService.getListNews(pageSize,pageNumber - 1);
+        List<New> listNews = paginableItemList.getListData();
+
+        int totalPages = 0;
+        if(paginableItemList.getTotalNews() % pageSize == 0) {
+            totalPages = (int)(paginableItemList.getTotalNews() / pageSize);
+        } else {
+            totalPages = (int)(paginableItemList.getTotalNews() / pageSize) + 1;
+        }
+
+        adminVM.setTotalPagingItems(totalPages);
+        adminVM.setCurrentPage(pageNumber);
+
+        model.addAttribute("adminvm",adminVM);
         model.addAttribute("news",news);
         return "news";
     }
@@ -246,5 +269,14 @@ public class HomeController extends BaseController {
         model.addAttribute("vm", vm);
         return "login";
     }
+
+    @GetMapping(path = "/contact")
+    public String contact(Model model){
+        LandingVM vm = new LandingVM();
+        this.setLayoutHeaderVM(vm);
+        model.addAttribute("vm",vm);
+        return "contact";
+    }
+
 
 }

@@ -64,7 +64,7 @@ $(document).ready(function () {
                 var createdDate = moment(res.data.data.createdDate, "YYYY-MM-DD HH:mm:ss");
                 $('#datepicker-created-date-product').data("DateTimePicker").date(createdDate);
                 $("#modal-create-product").modal();
-                console.log(dataProduct.id);
+                console.log(dataProduct.categoryId);
             }
         }, function (err) {
             NProgress.done();
@@ -196,5 +196,3 @@ $(document).ready(function () {
         "pagingType" : "full_numbers"
     });
 });
-
-
